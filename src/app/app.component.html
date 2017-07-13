@@ -1,11 +1,2 @@
-<h2>Basic Request</h2>
-<button type="button" (click)="getAllCars()">Make Request</button>
-<div *ngIf="loading">loading...</div>
-<pre>{{data | json}}</pre>
-
-<button type="button" (click)="getCarsWithClass()">Get All Cars</button>
-<div *ngFor="let car of carResult">
-
-  {{car.carName}}
-  {{car.carRegistration}}
-</div>
+<h2>Welcome App</h2>
+<app-car-list></app-car-list>

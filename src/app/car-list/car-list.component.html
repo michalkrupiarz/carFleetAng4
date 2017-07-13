@@ -1,0 +1,10 @@
+<div>
+  Welcome car list component
+</div>
+
+<button type="button" (click)="getWholeCarsList()">Get All Cars</button>
+<div *ngFor="let car of wholeCarsList">
+
+  {{car.carName}}
+  {{car.carRegistration}}
+</div>

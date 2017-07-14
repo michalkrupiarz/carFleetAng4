@@ -14,7 +14,11 @@ export class CarListComponent implements OnInit {
 
   constructor(private cS: CarService) { }
   private wholeCarsList: Car[];
+  private initView:boolean;
+  private initCarsList: Car[];
   ngOnInit() {
+    this.setInitCarsList();
+    //console.log(this.initCarsList[1]);
   }
 
   getWholeCarsList(){
@@ -25,4 +29,20 @@ export class CarListComponent implements OnInit {
       });
   }
 
+  setInitCarsList(){
+    let cars:Car[];
+    this.cS.getAllCars()
+      .subscribe((source)=>{
+        console.log("CarLIstComponent GetWholeCarsList ",source);
+        cars = source;
+        this.initCarsList = this.firstTwoCars(cars);
+      });
+
+  }
+
+  firstTwoCars(list:Car[]):Car[]{
+    let newList:Car[];
+
+    return newList;
+  }
 }

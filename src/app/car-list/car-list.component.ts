@@ -13,9 +13,7 @@ import { NgModule } from '@angular/core';
   templateUrl: './car-list.component.html',
   styleUrls: ['./car-list.component.css']
 })
-@NgModule({
-  imports: [CollapseModule.forRoot()]
-})
+
 export class CarListComponent implements OnInit {
 
   constructor(private cS: CarService) { }
@@ -23,6 +21,7 @@ export class CarListComponent implements OnInit {
   private initView:boolean;
   private initCarsList: Car[];
    public isCollapsed:boolean = false;
+   public itemsInCarList:number;
   ngOnInit() {
     this.setInitCarsList();
     //console.log(this.initCarsList[1]);
@@ -43,6 +42,7 @@ export class CarListComponent implements OnInit {
         console.log("CarLIstComponent GetWholeCarsList ",source);
         cars = source;
         this.initCarsList = this.firstTwoCars(cars,3);
+        this.itemsInCarList = cars.length;
       });
 
   }

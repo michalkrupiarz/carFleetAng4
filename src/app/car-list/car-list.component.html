@@ -2,14 +2,32 @@
   Welcome car list component
 </div>
 
-<button type="button" (click)="getWholeCarsList()">Get All Cars</button>
-<div *ngFor="let car of wholeCarsList">
 
-  {{car.carName}}
-  {{car.carRegistration}}
+
+<button type="button" class="btn btn-primary"
+        (click)="isCollapsed = !isCollapsed">Toggle collapse
+</button>
+<hr>
+<div (collapsed)="collapsed($event)"
+     (expanded)="expanded($event)"
+     [collapse]="isCollapsed"
+     class="card card-block card-header">
+  <div class="well well-lg">
+    <div *ngFor="let car of initCarsList">
+      From Init
+      {{car.carName}}
+      {{car.carRegistration}}
+    </div>
+  </div>
 </div>
-<div *ngFor="let car of initCarsList">
-  From Init
-  {{car.carName}}
-  {{car.carRegistration}}
-</div>
+<accordion>
+<accordion-group >  <div accordion-heading>astarta {{itemsInCarList}}</div>
+  <div class="well well-lg">
+    <div *ngFor="let car of initCarsList">
+      From Init
+      {{car.carName}}
+      {{car.carRegistration}}
+    </div>
+  </div>
+  </accordion-group>
+</accordion>

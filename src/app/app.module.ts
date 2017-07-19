@@ -8,6 +8,9 @@ import { CarComponent } from './car/car.component';
 import { DataService} from './data.service';
 import {CarService} from './car/car.service';
 import { CarListComponent } from './car-list/car-list.component';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
+
 
 @NgModule({
   declarations: [
@@ -17,7 +20,9 @@ import { CarListComponent } from './car-list/car-list.component';
   ],
   imports: [
     BrowserModule,
-    HttpModule
+    HttpModule,
+    CollapseModule.forRoot(),
+    AccordionModule.forRoot()
   ],
   providers: [DataService,CarService],
   bootstrap: [AppComponent]

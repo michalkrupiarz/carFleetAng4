@@ -10,21 +10,30 @@ import {CarService} from './car/car.service';
 import { CarListComponent } from './car-list/car-list.component';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { RepairsListComponent } from './repairs-list/repairs-list.component';
+import {RepairService} from './repair/repair.service';
+import { RepairComponent } from './repair/repair.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     CarComponent,
-    CarListComponent
+    CarListComponent,
+    RepairsListComponent,
+    RepairComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
     CollapseModule.forRoot(),
-    AccordionModule.forRoot()
+    AccordionModule.forRoot(),
+    TabsModule.forRoot()
   ],
-  providers: [DataService,CarService],
+  providers: [DataService,CarService,RepairService  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

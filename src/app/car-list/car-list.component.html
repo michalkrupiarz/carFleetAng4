@@ -1,33 +1,42 @@
-<div>
-  Welcome car list component
-</div>
-
-
-
-<button type="button" class="btn btn-primary"
-        (click)="isCollapsed = !isCollapsed">Toggle collapse
-</button>
-<hr>
-<div (collapsed)="collapsed($event)"
-     (expanded)="expanded($event)"
-     [collapse]="isCollapsed"
-     class="card card-block card-header">
-  <div class="well well-lg">
-    <div *ngFor="let car of initCarsList">
-      From Init
-      {{car.carName}}
-      {{car.carRegistration}}
-    </div>
-  </div>
-</div>
 <accordion>
-<accordion-group >  <div accordion-heading>astarta {{itemsInCarList}}</div>
-  <div class="well well-lg">
-    <div *ngFor="let car of initCarsList">
-      From Init
-      {{car.carName}}
-      {{car.carRegistration}}
-    </div>
+<accordion-group >
+  <div accordion-heading>
+    Cars in stock: <span class="label label-primary">{{wholeCarsListLength}}</span> |
+    <strong> Pending: </strong>
+    repairs: <span class="label label-warning">{{pendingRepairsNumber}}</span>,
+    tires: ,
+    checkouts: ,
+    lends: ,
+    documents: ,
+    insurance.
   </div>
+    <table class="table table-striped table-hover">
+      <thead>
+      <tr>
+        <th>
+          Mark
+        </th>
+        <th>
+          Registration
+        </th>
+        <th>
+          Repairs
+        </th>
+      <tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let car of wholeCarsList">
+          <td>
+            {{car.carName}}
+          </td>
+          <td>
+            {{car.carRegistration}}
+          </td>
+          <td>
+            {{car.repairs.length}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </accordion-group>
 </accordion>

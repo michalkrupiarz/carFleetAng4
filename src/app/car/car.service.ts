@@ -10,15 +10,10 @@ export class CarService {
 
   constructor(private ds:DataService) { }
   cars: Car[];
-  getAllCarsUlr='http://localhost:8100/cfsh/getAllCars';
+  getAllCarsUlr='getAllCars';
 
   getAllCars(){
   return this.ds.getData(this.getAllCarsUlr);
-    // .subscribe((cars)=>{
-      // console.log("cars from service ",cars);
-      // this.cars = cars;
-  // });
-
   }
 
 }

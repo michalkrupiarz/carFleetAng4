@@ -6,11 +6,11 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class DataService {
-
+  private baseUrl:String = "http://localhost:8100/cfsh/";
   constructor(private http:Http) { }
 
   getData(url:string){
-    return this.http.get(url).map(r=>r.json());
+    return this.http.get(this.baseUrl+url).map(r=>r.json());
   }
 
 }

@@ -4,9 +4,10 @@ import {Car} from '../car.model';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import {CarService} from '../car/car.service';
+import {RepairService} from '../repair/repair.service';
 import {Event} from '@angular/router';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
-import { NgModule } from '@angular/core';
+
 
 @Component({
   selector: 'app-car-list',
@@ -16,15 +17,15 @@ import { NgModule } from '@angular/core';
 
 export class CarListComponent implements OnInit {
 
-  constructor(private cS: CarService) { }
+  constructor(private cS: CarService
+    ,private rS: RepairService) { }
   private wholeCarsList: Car[];
-  private initView:boolean;
-  private initCarsList: Car[];
-   public isCollapsed:boolean = false;
-   public itemsInCarList:number;
+  private pendingRepairsNumber:number;
+  private wholeCarsListLength:number;
   ngOnInit() {
-    this.setInitCarsList();
-    //console.log(this.initCarsList[1]);
+    this.getWholeCarsList();
+    this.getPendingRepairsNumber();
+
   }
 
   getWholeCarsList(){
@@ -32,34 +33,17 @@ export class CarListComponent implements OnInit {
       .subscribe((source)=>{
         console.log("CarLIstComponent GetWholeCarsList ",source);
         this.wholeCarsList = source;
+            this.wholeCarsListLength = this.wholeCarsList.length;
       });
   }
-
-  setInitCarsList(){
-    let cars:Car[];
-    this.cS.getAllCars()
+  getPendingRepairsNumber(){
+    this.rS.getAllPendingRepairs()
       .subscribe((source)=>{
-        console.log("CarLIstComponent GetWholeCarsList ",source);
-        cars = source;
-        this.initCarsList = this.firstTwoCars(cars,3);
-        this.itemsInCarList = cars.length;
-      });
-
+        let items:any[];
+        items = source;
+        this.pendingRepairsNumber = items.length;
+      })
   }
 
-  firstTwoCars(list:Car[],items:number):Car[]{
-    let newList:Car[];
-    newList = [];
-    let i=0;
-    for (i=0; i<items ;i++){
-      newList.push(list[i]);
-    }
-    return newList;
-  }
-  public collapsed(event:any):void {
-    console.log(event);
-  }
-  public expanded(event:any):void {
-    console.log(event);
-  }
+
 }

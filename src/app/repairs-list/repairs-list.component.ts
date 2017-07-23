@@ -14,6 +14,7 @@ export class RepairsListComponent implements OnInit {
 
   constructor(private rS: RepairService) { }
     private repairsWholeList: Repair[];
+    private repairsWholeListNumber:number;
   ngOnInit() {
     this.getRepairsWholeList();
   }
@@ -23,6 +24,7 @@ export class RepairsListComponent implements OnInit {
     .subscribe((source)=>{
       console.log("repairs", source);
       this.repairsWholeList = source;
+      this.repairsWholeListNumber = this.repairsWholeList.length;
     });
   }
 

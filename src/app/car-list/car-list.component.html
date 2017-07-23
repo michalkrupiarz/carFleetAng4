@@ -33,7 +33,11 @@
             {{car.carRegistration}}
           </td>
           <td>
-            {{car.repairs.length}}
+            <div *ngFor="let rep of car.repairs">
+              <div *ngIf="rep.status.id==1">
+                tutaj jest poprawny status
+              </div>
+            </div>
           </td>
         </tr>
       </tbody>

@@ -13,6 +13,8 @@ export class CarService {
   private getAllCarsUrl='getAllCars';
   private getCarsWithWithPendingRepairsUrl= 'getAllCarsWithPendingRepairs';
   private getCarsWithPendingTiresChangeUrl= 'getAllCarsWithPendingTires';
+
+
   getAllCars(){
   return this.ds.getData(this.getAllCarsUrl);
   }

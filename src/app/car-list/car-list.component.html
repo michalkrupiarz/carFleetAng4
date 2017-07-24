@@ -1,151 +1,58 @@
-
-
-<accordion>
-<accordion-group >
-  <div accordion-heading>
-    Cars in stock: <span class="label label-primary">{{wholeCarsListLength}}</span> |
-    <strong> Pending: </strong>
-    repairs: <span class="label label-warning">{{pendingRepairsNumber}}</span> |
-    tires: <span class="label label-warning">{{pendingTiresNumber}}</span> |
-    checkouts: ,
-    lends: ,
-    documents: ,
-    insurance.
-
-
-  </div>
-    <table class="table table-striped table-hover">
-      <thead>
-      <tr>
-        <th>Id.</th>
-        <th>Mark</th>
-        <th>Registration</th>
-        <th>Repairs</th>
-        <th>Lends</th>
-        <th>Checkouts</th>
-        <th>Insurances</th>
-        <th>Tires</th>
-      <tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let car of wholeCarsList">
-          <td>{{car.id+1}}</td>
-          <td>{{car.carName}}</td>
-          <td>{{car.carRegistration}}</td>
-          <td>
-            <div *ngFor="let rep of car.repairs">
-              <div *ngIf="rep.status.id==1">
-                <span class="label label-danger">!</span>
-              </div>
-            </div>
-          </td>
-          <td>
-            <div *ngFor="let lend of car.lends">
-              <div *ngIf="lend.status.id==1">
-                <span class="label label-info">
-                  \/
-                </span>
-              </div>
-            </div>
-          </td>
-          <td >
-            <div *ngFor="let ch of car.check">
-              <div *ngIf="ch.status.id==1">
-                <span class="label label-danger">!</span>
-              </div>
-            </div>
-          </td>
-          <td>
-            <div *ngFor="let ins of car.insurances">
-              <div *ngIf="ins.status.id==1">
-                <span class="label label-success">\/</span>
-              </div>
-            </div>
-          </td>
-          <td>
-            <div *ngFor="let tire of car.tires">
-              <div *ngIf="tire.status.id==1">
-                <span class="label label-warning">!</span>
-              </div>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </accordion-group>
-</accordion>
-
-<div>
-  <tabset>
-    <tab><template tabHeading>
-      Cars in stock: <span class="label label-primary">{{wholeCarsListLength}}</span>
-    </template>
-    <table class="table table-striped table-hover">
-      <thead>
-      <tr>
-        <th>Id.</th>
-        <th>Mark</th>
-        <th>Registration</th>
-        <th>Repairs</th>
-        <th>Lends</th>
-        <th>Checkouts</th>
-        <th>Insurances</th>
-        <th>Tires</th>
-      <tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let car of wholeCarsList">
-          <td>{{car.id+1}}</td>
-          <td>{{car.carName}}</td>
-          <td>{{car.carRegistration}}</td>
-          <td>
-            <div *ngFor="let rep of car.repairs">
-              <div *ngIf="rep.status.id==1">
-                <span class="label label-danger">!</span>
-              </div>
-            </div>
-          </td>
-          <td>
-            <div *ngFor="let lend of car.lends">
-              <div *ngIf="lend.status.id==1">
-                <span class="label label-info">
-                  \/
-                </span>
-              </div>
-            </div>
-          </td>
-          <td >
-            <div *ngFor="let ch of car.check">
-              <div *ngIf="ch.status.id==1">
-                <span class="label label-danger">!</span>
-              </div>
-            </div>
-          </td>
-          <td>
-            <div *ngFor="let ins of car.insurances">
-              <div *ngIf="ins.status.id==1">
-                <span class="label label-success">\/</span>
-              </div>
-            </div>
-          </td>
-          <td>
-            <div *ngFor="let tire of car.tires">
-              <div *ngIf="tire.status.id==1">
-                <span class="label label-warning">!</span>
-              </div>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    </tab>
-    <tab heading="Static Title 1">Static content 1</tab>
-    <tab heading="Static Title 2">Static content 2</tab>
-    <tab (select)="alertMe()">
-      <template tabHeading>
-        <i class="glyphicon glyphicon-bell"></i> Alert!
-      </template>
-      I've got an HTML heading, and a select callback. Pretty cool!
-    </tab>
-  </tabset>
-</div>
+<table class="table table-striped table-hover">
+  <thead>
+  <tr>
+    <th>Id.</th>
+    <th>Mark</th>
+    <th>Registration</th>
+    <th>Repairs</th>
+    <th>Lends</th>
+    <th>Checkouts</th>
+    <th>Insurances</th>
+    <th>Tires</th>
+  <tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let car of wholeCarsList">
+      <td>{{car.id+1}}</td>
+      <td>{{car.carName}}</td>
+      <td>{{car.carRegistration}}</td>
+      <td>
+        <div *ngFor="let rep of car.repairs">
+          <div *ngIf="rep.status.id==1">
+            <span class="label label-danger">!</span>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div *ngFor="let lend of car.lends">
+          <div *ngIf="lend.status.id==1">
+            <span class="label label-info">
+              \/
+            </span>
+          </div>
+        </div>
+      </td>
+      <td >
+        <div *ngFor="let ch of car.check">
+          <div *ngIf="ch.status.id==1">
+            <span class="label label-danger">!</span>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div *ngFor="let ins of car.insurances">
+          <div *ngIf="ins.status.id==1">
+            <span class="label label-success">\/</span>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div *ngFor="let tire of car.tires">
+          <div *ngIf="tire.status.id==1">
+            <span class="label label-warning">!</span>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

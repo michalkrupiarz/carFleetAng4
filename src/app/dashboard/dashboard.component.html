@@ -1,3 +1,11 @@
-<p>
-  dashboard works!
-</p>
+<div>
+  <tabset>
+    <tab>
+      <template tabHeading>Cars in stock:
+         <span class="label label-primary">{{wholeCarsListLength}}</span></template>
+      <app-car-list></app-car-list>
+    </tab>
+    <tab heading="Static Title 1">Static content 1</tab>
+    <tab heading="Static Title 2">Static content 2</tab>
+  </tabset>
+</div>

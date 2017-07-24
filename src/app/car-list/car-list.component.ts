@@ -7,6 +7,7 @@ import {CarService} from '../car/car.service';
 import {RepairService} from '../repair/repair.service';
 import {Event} from '@angular/router';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 
 
 @Component({
@@ -19,31 +20,41 @@ export class CarListComponent implements OnInit {
 
   constructor(private cS: CarService
     ,private rS: RepairService) { }
+
   private wholeCarsList: Car[];
+  private carsWithRepairsPendingList:Car[];
+  private carsWithPendingTires:Car[];
+
   private pendingRepairsNumber:number;
   private wholeCarsListLength:number;
+  private pendingTiresNumber:number;
+
   ngOnInit() {
     this.getWholeCarsList();
-    this.getPendingRepairsNumber();
-
+    this.getCarsWithPendingRepairsNumber();
+    this.getCarsWithPendingTires();
   }
 
   getWholeCarsList(){
     this.cS.getAllCars()
       .subscribe((source)=>{
-        console.log("CarLIstComponent GetWholeCarsList ",source);
         this.wholeCarsList = source;
             this.wholeCarsListLength = this.wholeCarsList.length;
       });
   }
-  getPendingRepairsNumber(){
-    this.rS.getAllPendingRepairs()
-      .subscribe((source)=>{
-        let items:any[];
-        items = source;
-        this.pendingRepairsNumber = items.length;
-      })
+  getCarsWithPendingRepairsNumber(){
+    this.cS.getCarsWithPendingRepairs()
+      .subscribe((source)=>{this.carsWithRepairsPendingList=source;
+        this.pendingRepairsNumber = this.carsWithRepairsPendingList.length;
+      });
   }
-
+  getCarsWithPendingTires(){
+    this.cS.getCarsWithPendingTires()
+    .subscribe((source)=>{
+      console.log("getPendingTires ",source);
+      this.carsWithPendingTires = source;
+    this.pendingTiresNumber = this.carsWithPendingTires.length
+    });
+  }
 
 }

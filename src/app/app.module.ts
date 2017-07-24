@@ -15,6 +15,8 @@ import { RepairsListComponent } from './repairs-list/repairs-list.component';
 import {RepairService} from './repair/repair.service';
 import { RepairComponent } from './repair/repair.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { TireComponent } from './tire/tire.component';
+import { TireListComponent } from './tire-list/tire-list.component';
 
 
 @NgModule({
@@ -24,7 +26,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     CarListComponent,
     RepairsListComponent,
     RepairComponent,
-    DashboardComponent
+    DashboardComponent,
+    TireComponent,
+    TireListComponent
   ],
   imports: [
     BrowserModule,

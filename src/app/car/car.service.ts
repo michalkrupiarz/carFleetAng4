@@ -9,11 +9,17 @@ import {Car} from '../car.model';
 export class CarService {
 
   constructor(private ds:DataService) { }
-  cars: Car[];
-  getAllCarsUlr='getAllCars';
-
+  private cars: Car[];
+  private getAllCarsUrl='getAllCars';
+  private getCarsWithWithPendingRepairsUrl= 'getAllCarsWithPendingRepairs';
+  private getCarsWithPendingTiresChangeUrl= 'getAllCarsWithPendingTires';
   getAllCars(){
-  return this.ds.getData(this.getAllCarsUlr);
+  return this.ds.getData(this.getAllCarsUrl);
   }
-
+  getCarsWithPendingRepairs(){
+   return this.ds.getData(this.getCarsWithWithPendingRepairsUrl);
+  }
+  getCarsWithPendingTires(){
+    return this.ds.getData(this.getCarsWithPendingTiresChangeUrl);
+  }
 }

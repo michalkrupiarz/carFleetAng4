@@ -13,19 +13,19 @@
   </thead>
   <tbody>
     <tr *ngFor="let car of wholeCarsList">
-      <td>{{car.id+1}}</td>
+      <td>{{car.id}}</td>
       <td>{{car.carName}}</td>
       <td>{{car.carRegistration}}</td>
       <td>
         <div *ngFor="let rep of car.repairs">
-          <div *ngIf="rep.status.id==1">
+          <div *ngIf="rep.status.id==2">
             <span class="label label-danger">!</span>
           </div>
         </div>
       </td>
       <td>
         <div *ngFor="let lend of car.lends">
-          <div *ngIf="lend.status.id==1">
+          <div *ngIf="lend.status.id==2">
             <span class="label label-info">
               \/
             </span>
@@ -34,21 +34,21 @@
       </td>
       <td >
         <div *ngFor="let ch of car.check">
-          <div *ngIf="ch.status.id==1">
+          <div *ngIf="ch.status.id==2">
             <span class="label label-danger">!</span>
           </div>
         </div>
       </td>
       <td>
         <div *ngFor="let ins of car.insurances">
-          <div *ngIf="ins.status.id==1">
+          <div *ngIf="ins.status.id==2">
             <span class="label label-success">\/</span>
           </div>
         </div>
       </td>
       <td>
         <div *ngFor="let tire of car.tires">
-          <div *ngIf="tire.status.id==1">
+          <div *ngIf="tire.status.id==2">
             <span class="label label-warning">!</span>
           </div>
         </div>

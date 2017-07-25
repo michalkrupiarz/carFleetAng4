@@ -5,13 +5,17 @@
          <span class="label label-primary">{{wholeCarsListLength}}</span></template>
       <app-car-list></app-car-list>
     </tab>
-    <tab heading="Static Title 1">Static content 1</tab>
-    <tab heading="Static Title 2">Static content 2</tab>
+    <tab>
+      <template tabHeading>Repairs, pending:
+         <span class="label label-primary">{{pendingRepairsNumber}}</span></template>
+      <app-repairs-list></app-repairs-list>
+    </tab>
+    <tab heading="Lends">Static content 2</tab>
     <tab>
       <template tabHeading>
 
           <span class="glyphicon glyphicon-exclamation-sign"></span>
-      
+
       </template>
     </tab>
   </tabset>

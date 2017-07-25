@@ -17,6 +17,7 @@ import { RepairComponent } from './repair/repair.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { TireComponent } from './tire/tire.component';
 import { TireListComponent } from './tire-list/tire-list.component';
+import { SortCarService} from './usableServices/sort-car.service';
 
 
 @NgModule({
@@ -37,7 +38,10 @@ import { TireListComponent } from './tire-list/tire-list.component';
     AccordionModule.forRoot(),
     TabsModule.forRoot()
   ],
-  providers: [DataService,CarService,RepairService  ],
+  providers: [DataService,
+    CarService,
+    RepairService,
+    SortCarService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

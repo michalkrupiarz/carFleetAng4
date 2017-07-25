@@ -2,8 +2,12 @@
   <thead>
   <tr>
     <th>Id.</th>
-    <th>Mark</th>
-    <th>Registration</th>
+    <th>Mark
+      <span (click)="sortByCarName2()" class="glyphicon glyphicon-sort-by-alphabet"></span>
+    </th>
+    <th>Registration
+      <span (click)="sortByCarName()" class="glyphicon glyphicon-sort-by-alphabet"></span>
+    </th>
     <th>Repairs</th>
     <th>Lends</th>
     <th>Checkouts</th>
@@ -12,7 +16,7 @@
   <tr>
   </thead>
   <tbody>
-    <tr *ngFor="let car of wholeCarsList">
+    <tr *ngFor="let car of wholeCarsList, let i number">
       <td>{{car.id}}</td>
       <td>{{car.carName}}</td>
       <td>{{car.carRegistration}}</td>

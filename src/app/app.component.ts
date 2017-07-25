@@ -4,6 +4,7 @@ import {Car} from './car.model';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import {CarService} from './car/car.service';
+import { SortingService} from './usableServices/sorting.service';
 
 
 @Component({

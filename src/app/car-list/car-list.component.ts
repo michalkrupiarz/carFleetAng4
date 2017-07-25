@@ -8,6 +8,8 @@ import {RepairService} from '../repair/repair.service';
 import {Event} from '@angular/router';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { SortingService} from '../usableServices/sorting.service';
+import {SortCarService} from '../usableServices/sort-car.service';
 
 
 @Component({
@@ -19,7 +21,8 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 export class CarListComponent implements OnInit {
 
   constructor(private cS: CarService
-    ,private rS: RepairService) { }
+    ,private rS: RepairService
+    ,private sortCarServ: SortCarService) { }
 
   private wholeCarsList: Car[];
   private carsWithRepairsPendingList:Car[];
@@ -38,6 +41,7 @@ export class CarListComponent implements OnInit {
   getWholeCarsList(){
     this.cS.getAllCars()
       .subscribe((source)=>{
+        console.log("getWholeCarList ",source);
         this.wholeCarsList = source;
             this.wholeCarsListLength = this.wholeCarsList.length;
       });
@@ -56,5 +60,19 @@ export class CarListComponent implements OnInit {
     this.pendingTiresNumber = this.carsWithPendingTires.length
     });
   }
-
+  sortByCarName(){
+    this.wholeCarsList =
+    this.sortCarServ.sortInAlphabeticalOrder(this.wholeCarsList);
+  }
+  sortByCarRegistration(){
+    let cars = this.wholeCarsList.slice(0);
+    cars.sort(function(a,b)
+    {
+      let x = a.carName.toLowerCase();
+      let y = b.carName.toLowerCase();
+      return x<y ? -1 : x>y ? 1:0;
+    });
+    console.log('sorted cars',cars);
+    this.wholeCarsList = cars;
+    }
 }

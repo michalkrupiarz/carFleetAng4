@@ -32,6 +32,10 @@ export class CarListComponent implements OnInit {
   private wholeCarsListLength:number;
   private pendingTiresNumber:number;
 
+  private alphSortedNames:boolean = true;
+  private alphSortedReg:boolean = true;
+  private filteredByRepairs:boolean = false;
+
   ngOnInit() {
     this.getWholeCarsList();
     this.getCarsWithPendingRepairsNumber();
@@ -41,7 +45,6 @@ export class CarListComponent implements OnInit {
   getWholeCarsList(){
     this.cS.getAllCars()
       .subscribe((source)=>{
-        console.log("getWholeCarList ",source);
         this.wholeCarsList = source;
             this.wholeCarsListLength = this.wholeCarsList.length;
       });
@@ -55,24 +58,47 @@ export class CarListComponent implements OnInit {
   getCarsWithPendingTires(){
     this.cS.getCarsWithPendingTires()
     .subscribe((source)=>{
-      console.log("getPendingTires ",source);
       this.carsWithPendingTires = source;
     this.pendingTiresNumber = this.carsWithPendingTires.length
     });
   }
-  sortByCarName(){
+  sortByCarNameAlphabeticaly(){
+    this.alphSortedNames = false;
     this.wholeCarsList =
-    this.sortCarServ.sortInAlphabeticalOrder(this.wholeCarsList);
+    this.sortCarServ.sortNameInAlphabeticalOrder(this.wholeCarsList);
   }
-  sortByCarRegistration(){
-    let cars = this.wholeCarsList.slice(0);
-    cars.sort(function(a,b)
-    {
-      let x = a.carName.toLowerCase();
-      let y = b.carName.toLowerCase();
-      return x<y ? -1 : x>y ? 1:0;
-    });
-    console.log('sorted cars',cars);
-    this.wholeCarsList = cars;
-    }
+  sortByCarNameReversedAlphabeticaly(){
+    this.alphSortedNames = true;
+    this.wholeCarsList =
+    this.sortCarServ.sortNameInReversedAlphabeticalOrder(this.wholeCarsList);
+  }
+  sortByCarRegAlphabeticaly(){
+    this.alphSortedReg = false;
+    this.wholeCarsList =
+    this.sortCarServ.sortRegInAlphabeticalOrder(this.wholeCarsList);
+  }
+  sortByCarRegReversedAlphabeticaly(){
+    this.alphSortedReg = true;
+    this.wholeCarsList =
+    this.sortCarServ.sortRegInReversedAlphabeticalOrder(this.wholeCarsList);
+  }
+  filterCarsWithPendingRepairsRepair(){
+    this.cS.getCarsWithPendingRepairs()
+      .subscribe((source)=>{
+        this.wholeCarsList=source;
+        this.filteredByRepairs=true;
+      });
+  }
+
+  filterCarsWithPendingTires(){
+    this.cS.getAllCarsSortedByTires
+  }
+
+  clearFilters(){
+    this.getWholeCarsList();
+  }
+  clearRepairsFilter(){
+    this.filteredByRepairs = false;
+    this.clearFilters();
+  }
 }

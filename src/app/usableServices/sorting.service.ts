@@ -16,4 +16,5 @@ export class SortingService {
     console.log('sorted cars',toSort);
     return toSort;
     }
+
   }

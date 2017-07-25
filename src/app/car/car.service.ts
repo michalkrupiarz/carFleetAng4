@@ -13,7 +13,8 @@ export class CarService {
   private getAllCarsUrl='getAllCars';
   private getCarsWithWithPendingRepairsUrl= 'getAllCarsWithPendingRepairs';
   private getCarsWithPendingTiresChangeUrl= 'getAllCarsWithPendingTires';
-
+  private getAllCarsSortedByRepairsUrl='sortCarsBy/repairs';
+  private getAllCarsSortedByTiresUrl='sortCarsBy/tires';
 
   getAllCars(){
   return this.ds.getData(this.getAllCarsUrl);
@@ -23,5 +24,11 @@ export class CarService {
   }
   getCarsWithPendingTires(){
     return this.ds.getData(this.getCarsWithPendingTiresChangeUrl);
+  }
+  getAllCarsSortedByRepairs(){
+    return this.ds.getData(this.getAllCarsSortedByRepairsUrl);
+  }
+  getAllCarsSortedByTires(){
+    return this.ds.getData(this.getAllCarsSortedByTiresUrl);
   }
 }

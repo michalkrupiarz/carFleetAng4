@@ -10,13 +10,29 @@
          <span class="label label-primary">{{pendingRepairsNumber}}</span></template>
       <app-repairs-list></app-repairs-list>
     </tab>
-    <tab heading="Lends">Static content 2</tab>
     <tab>
-      <template tabHeading>
-
-          <span class="glyphicon glyphicon-exclamation-sign"></span>
-
-      </template>
+      <template tabHeading>Lends:
+         <span class="label label-success">free</span>
+         <span class="label label-default">taken</span>
+       </template>
+      Lends will be here
+    </tab>
+    <tab>
+      <template tabHeading>Checkouts, pending:
+         <span class="label label-primary">number</span>
+       </template>
+      Checkouts will be here
+    </tab>
+    <tab>
+      <template tabHeading>Insurances, pending:
+         <span class="label label-primary">number</span>
+       </template>
+      Insurances will be here
+    </tab>
+    <tab>
+      <template tabHeading>Tires, pending:
+         <span class="label label-primary">{{pendingTiresNumber}}</span></template>
+      here will be tires
     </tab>
   </tabset>
 </div>

@@ -3,12 +3,32 @@
   <tr>
     <th>Id.</th>
     <th>Mark
-      <span (click)="sortByCarName2()" class="glyphicon glyphicon-sort-by-alphabet"></span>
+      <span *ngIf="alphSortedNames"
+        (click)="sortByCarNameAlphabeticaly()"
+        class="glyphicon glyphicon-sort-by-alphabet">
+      </span>
+      <span *ngIf="!alphSortedNames"
+      (click)="sortByCarNameReversedAlphabeticaly()"
+      class="glyphicon glyphicon-sort-by-alphabet-alt"></span>
     </th>
     <th>Registration
-      <span (click)="sortByCarName()" class="glyphicon glyphicon-sort-by-alphabet"></span>
+      <span *ngIf="alphSortedReg"
+        (click)="sortByCarRegAlphabeticaly()"
+        class="glyphicon glyphicon-sort-by-alphabet">
+      </span>
+      <span *ngIf="!alphSortedReg"
+      (click)="sortByCarRegReversedAlphabeticaly()"
+      class="glyphicon glyphicon-sort-by-alphabet-alt"></span>
     </th>
-    <th>Repairs</th>
+    <th>Repairs
+      <span *ngIf = "!filteredByRepairs"
+      (click)="filterCarsWithPendingRepairsRepair()"
+        class="glyphicon glyphicon-filter"></span>
+        <span *ngIf = "filteredByRepairs"
+        (click) = "clearRepairsFilter()"
+        class="glyphicon glyphicon-remove-circle"></span>
+
+    </th>
     <th>Lends</th>
     <th>Checkouts</th>
     <th>Insurances</th>
@@ -23,7 +43,7 @@
       <td>
         <div *ngFor="let rep of car.repairs">
           <div *ngIf="rep.status.id==2">
-            <span class="label label-danger">!</span>
+            <span class="glyphicon glyphicon-exclamation-sign" style="color:red"></span>
           </div>
         </div>
       </td>

@@ -29,14 +29,24 @@
         class="glyphicon glyphicon-remove-circle"></span>
 
     </th>
-    <th>Lends</th>
+    <th>Lends
+      <span *ngIf = "allCarsRegardlessLend"
+      (click)="clearLendFilters()"
+        class="glyphicon glyphicon-filter"></span>
+      <span *ngIf = "freeCarsOnly"
+      (click)="leaveOnlyFreeCarsFilter()"
+        class="glyphicon glyphicon-filter"></span>
+        <span *ngIf = "takenOnly"
+        (click) = "leaveOnlyTAkenCarsFilter()"
+        class="glyphicon glyphicon-remove-circle"></span>
+    </th>
     <th>Checkouts</th>
     <th>Insurances</th>
     <th>Tires</th>
   <tr>
   </thead>
   <tbody>
-    <tr *ngFor="let car of wholeCarsList, let i number">
+    <tr *ngFor="let car of wholeCarsList">
       <td>{{car.id}}</td>
       <td>{{car.carName}}</td>
       <td>{{car.carRegistration}}</td>
@@ -47,13 +57,15 @@
           </div>
         </div>
       </td>
-      <td>
-        <div *ngFor="let lend of car.lends">
-          <div *ngIf="lend.status.id==2">
-            <span class="label label-info">
-              \/
-            </span>
+      <td >
+          <div *ngIf="!car.lends.length>0">
+            <span class="glyphicon glyphicon-home" style="color:green"></span>
+        </div>
+          <div *ngFor="let lend of car.lends">
+            <div *ngIf="lend.status.id==2; else carFree">
+              <span class="glyphicon glyphicon-road" style="color:blue"></span>
           </div>
+          <ng-template #carFree><span class="glyphicon glyphicon-home" style="color:green"></span></ng-template>
         </div>
       </td>
       <td >

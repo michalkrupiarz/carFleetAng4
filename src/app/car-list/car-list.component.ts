@@ -35,6 +35,9 @@ export class CarListComponent implements OnInit {
   private alphSortedNames:boolean = true;
   private alphSortedReg:boolean = true;
   private filteredByRepairs:boolean = false;
+  private lendsAllCars:boolean  = true;
+  private takenCars:boolean = false;
+  private freeCars:boolean = false;
 
   ngOnInit() {
     this.getWholeCarsList();
@@ -89,16 +92,35 @@ export class CarListComponent implements OnInit {
         this.filteredByRepairs=true;
       });
   }
-
-  filterCarsWithPendingTires(){
-    this.cS.getAllCarsSortedByTires
-  }
-
   clearFilters(){
     this.getWholeCarsList();
   }
   clearRepairsFilter(){
     this.filteredByRepairs = false;
     this.clearFilters();
+  }
+  clearLendsFilters(){
+    this.lendsAllCars=true;
+    this.clearFilters();
+  }
+  leaveFreeCarsOnly(){
+    console.log("leave free cars only");
+    this.lendsAllCars = false;
+    this.freeCars=true;
+    this.takenCars=false;
+    this.cS.getAllCarsLendsFree()
+      .subscribe((source)=>{
+        this.wholeCarsList=source;
+      })
+  }
+  leaveTakenCarsOnly(){
+    console.log("leave taken cars only");
+    this.lendsAllCars = false;
+    this.takenCars=true;
+    this.freeCars=false;
+    this.cS.getAllCarsLendsTaken()
+      .subscribe((source)=>{
+        this.wholeCarsList=source;
+      })
   }
 }

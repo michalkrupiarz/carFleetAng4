@@ -27,18 +27,40 @@
         <span *ngIf = "filteredByRepairs"
         (click) = "clearRepairsFilter()"
         class="glyphicon glyphicon-remove-circle"></span>
-
     </th>
-    <th>Lends
-      <span *ngIf = "allCarsRegardlessLend"
-      (click)="clearLendFilters()"
-        class="glyphicon glyphicon-filter"></span>
-      <span *ngIf = "freeCarsOnly"
-      (click)="leaveOnlyFreeCarsFilter()"
-        class="glyphicon glyphicon-filter"></span>
-        <span *ngIf = "takenOnly"
-        (click) = "leaveOnlyTAkenCarsFilter()"
+    <th>Lends |
+      <span *ngIf="lendsAllCars; else lendsFilter">
+        <span
+        (click)="leaveFreeCarsOnly()"
+        class="glyphicon glyphicon-home" style = "color:green"></span>
+        |
+        <span
+        (click)="leaveTakenCarsOnly()"
+        class="glyphicon glyphicon-road" style = "color:blue"></span>
+      </span> |
+      <ng-template #lendsFilter>
+        <span *ngIf="takenCars">
+          <span
+          (click)="leaveFreeCarsOnly()"
+          class="glyphicon glyphicon-home" style = "color:green"></span> |
+          <span class="label label-warning">
+            <span
+            class=" glyphicon glyphicon-road" style = "color:blue"></span>
+          </span>
+        </span>
+        <span *ngIf="freeCars">
+          <span class="label label-warning">
+            <span
+            class="glyphicon glyphicon-home" style = "color:green"></span>
+          </span> |
+          <span
+          (click)="leaveTakenCarsOnly()"
+          class="glyphicon glyphicon-road" style = "color:blue"></span>
+        </span> |
+        <span
+        (click)="clearLendsFilters()"
         class="glyphicon glyphicon-remove-circle"></span>
+      </ng-template>
     </th>
     <th>Checkouts</th>
     <th>Insurances</th>

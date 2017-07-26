@@ -38,6 +38,7 @@ export class CarListComponent implements OnInit {
   private lendsAllCars:boolean  = true;
   private takenCars:boolean = false;
   private freeCars:boolean = false;
+  private checkoutsFiltr:boolean = false
 
   ngOnInit() {
     this.getWholeCarsList();
@@ -122,5 +123,12 @@ export class CarListComponent implements OnInit {
       .subscribe((source)=>{
         this.wholeCarsList=source;
       })
+  }
+  clearCheckoutsFilter(){
+    this.checkoutsFiltr = false;
+    this.clearFilters();
+  }
+  filterCarsWithoutCheckouts(){
+    this.checkoutsFiltr = true;
   }
 }

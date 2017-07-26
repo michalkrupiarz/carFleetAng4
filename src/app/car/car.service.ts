@@ -13,10 +13,12 @@ export class CarService {
   private getAllCarsUrl='getAllCars';
   private getCarsWithWithPendingRepairsUrl= 'getAllCarsWithPendingRepairs';
   private getCarsWithPendingTiresChangeUrl= 'getAllCarsWithPendingTires';
-  private getAllCarsSortedByRepairsUrl='sortCarsBy/repairs';
-  private getAllCarsSortedByTiresUrl='sortCarsBy/tires';
-  private getAllCarsLendsTakenUrl = 'sortCarsBy/taken';
-  private getAllCarsLendsFreeUrl = 'sortCarsBy/free';
+  private sortCarsByUrl = 'sortCarsBy/';
+  private getAllCarsSortedByRepairsUrl=this.sortCarsByUrl+'repairs';
+  private getAllCarsSortedByTiresUrl=this.sortCarsByUrl+'tires';
+  private getAllCarsLendsTakenUrl = this.sortCarsByUrl+'taken';
+  private getAllCarsLendsFreeUrl =this.sortCarsByUrl+'free';
+  private getAllCarsCheckoutsUrl = this.sortCarsByUrl+'checkouts'
 
   getAllCars(){
   return this.ds.getData(this.getAllCarsUrl);

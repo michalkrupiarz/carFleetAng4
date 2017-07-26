@@ -38,7 +38,7 @@ export class CarListComponent implements OnInit {
   private lendsAllCars:boolean  = true;
   private takenCars:boolean = false;
   private freeCars:boolean = false;
-  private checkoutsFiltr:boolean = false
+  private checkoutsFiltr:boolean = false;
 
   ngOnInit() {
     this.getWholeCarsList();

@@ -11,18 +11,17 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor = "let r of repairsWholeList">
-          <td>{{r.car.carRegistration}}
-          </td>
-          <td>{{r.car.carName}}
-          </td>
-          <td>{{r.dateStart | date:'yyyy-MM-dd'}}
-          </td>
-          <td>{{r.dateEnd | date:'yyyy-MM-dd '}}
-          </td>
-          <td>{{r.status.progress}}
-          </td>
-        </tr>
+          <tr *ngFor = "let r of repairsWholeList">
+            <td>{{r.car.carRegistration}}
+            </td>
+            <td>{{r.car.carName}}
+            </td>
+            <td>{{r.dateStart | date:'yyyy-MM-dd'}}
+            </td>
+            <td>{{r.dateEnd | date:'yyyy-MM-dd '}}
+            </td>
+            <td>{{r.status.progress}}
+            </td>
+          </tr>
       </tbody>
     </table>
-  

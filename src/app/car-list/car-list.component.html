@@ -1,10 +1,10 @@
 
    <br />
-<table class="table table-striped table-hover">
+<table class="table">
   <thead>
   <tr>
-    <th>Id.</th>
-    <th>Mark
+    <th width="5%">Id.</th>
+    <th width="15%">Mark
       <span *ngIf="alphSortedNames"
         (click)="sortByCarNameAlphabeticaly()"
         class="glyphicon glyphicon-sort-by-alphabet">
@@ -13,7 +13,7 @@
       (click)="sortByCarNameReversedAlphabeticaly()"
       class="glyphicon glyphicon-sort-by-alphabet-alt"></span>
     </th>
-    <th>Registration
+    <th width="15%">Registration
       <span *ngIf="alphSortedReg"
         (click)="sortByCarRegAlphabeticaly()"
         class="glyphicon glyphicon-sort-by-alphabet">
@@ -22,7 +22,7 @@
       (click)="sortByCarRegReversedAlphabeticaly()"
       class="glyphicon glyphicon-sort-by-alphabet-alt"></span>
     </th>
-    <th>Repairs
+    <th width="10%">Repairs
       <span *ngIf = "!filteredByRepairs"
       (click)="filterCarsWithPendingRepairsRepair()"
         class="glyphicon glyphicon-filter"></span>
@@ -30,7 +30,7 @@
         (click) = "clearRepairsFilter()"
         class="glyphicon glyphicon-remove-circle"></span>
     </th>
-    <th>Lends |
+    <th width="15%">Lends |
       <span *ngIf="lendsAllCars; else lendsFilter">
         <span
         (click)="leaveFreeCarsOnly()"
@@ -64,7 +64,7 @@
         class="glyphicon glyphicon-remove-circle"></span>
       </ng-template>
     </th>
-    <th>Checkouts
+    <th width="10%">Checkouts
       <span *ngIf="!checkoutsFiltr"
       (click)="filterCarsWithoutCheckouts()"
         class="glyphicon glyphicon-filter">
@@ -74,55 +74,94 @@
         class="glyphicon glyphicon-remove-circle">
       </span>
     </th>
-    <th>Insurances</th>
-    <th>Tires</th>
+    <th width="10%">Insurances</th>
+    <th width="10%">Tires</th>
   <tr>
   </thead>
-  <tbody>
-    <tr *ngFor="let car of wholeCarsList">
-    
-      <td>{{car.id}}</td>
-      <td>{{car.carName}}</td>
-      <td>{{car.carRegistration}}</td>
-      <td>
-        <div *ngFor="let rep of car.repairs">
-          <div *ngIf="rep.status.id==2">
-            <span class="glyphicon glyphicon-exclamation-sign" style="color:red"></span>
-          </div>
-        </div>
-      </td>
-      <td >
-          <div *ngIf="!car.lends.length>0">
-            <span class="glyphicon glyphicon-home" style="color:green"></span>
-        </div>
-          <div *ngFor="let lend of car.lends">
-            <div *ngIf="lend.status.id==2; else carFree">
-              <span class="glyphicon glyphicon-road" style="color:blue"></span>
-          </div>
-          <ng-template #carFree><span class="glyphicon glyphicon-home" style="color:green"></span></ng-template>
-        </div>
-      </td>
-      <td >
-        <div *ngFor="let ch of car.check">
-          <div *ngIf="ch.status.id==2">
-            <span class="label label-danger">!</span>
-          </div>
-        </div>
-      </td>
-      <td>
-        <div *ngFor="let ins of car.insurances">
-          <div *ngIf="ins.status.id==2">
-            <span class="label label-success">\/</span>
-          </div>
-        </div>
-      </td>
-      <td>
-        <div *ngFor="let tire of car.tires">
-          <div *ngIf="tire.status.id==2">
-            <span class="label label-warning">!</span>
-          </div>
-        </div>
-      </td>
-    </tr>
-  </tbody>
 </table>
+
+<div class="row" *ngFor="let car of wholeCarsList">
+  <accordion>
+    <accordion-group>
+      <div accordion-heading>
+          <table  class="table">
+            <tbody>
+              <tr>
+                <td width="5%">{{car.id}}</td>
+                <td width="15%">{{car.carName}}</td>
+                <td width="15%">{{car.carRegistration}}</td>
+                <td width="10%">
+                  <div *ngFor="let rep of car.repairs">
+                    <div *ngIf="rep.status.id==2">
+                      <span class="glyphicon glyphicon-exclamation-sign" style="color:red"></span>
+                    </div>
+                  </div>
+                </td>
+                <td width="15%">
+                    <div *ngIf="!car.lends.length>0">
+                      <span class="glyphicon glyphicon-home" style="color:green"></span>
+                  </div>
+                    <div *ngFor="let lend of car.lends">
+                      <div *ngIf="lend.status.id==2; else carFree">
+                        <span class="glyphicon glyphicon-road" style="color:blue"></span>
+                    </div>
+                    <ng-template #carFree><span class="glyphicon glyphicon-home" style="color:green"></span></ng-template>
+                  </div>
+                </td>
+                <td width="10%">
+                  <div *ngFor="let ch of car.check">
+                    <div *ngIf="ch.status.id==2">
+                      <span class="label label-danger">!</span>
+                    </div>
+                  </div>
+                </td>
+                <td width="10%">
+                  <div *ngFor="let ins of car.insurances">
+                    <div *ngIf="ins.status.id==2">
+                      <span class="label label-success">\/</span>
+                    </div>
+                  </div>
+                </td>
+                <td width="10%">
+                  <div *ngFor="let tire of car.tires">
+                    <div *ngIf="tire.status.id==2">
+                      <span class="label label-warning">!</span>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      <div>
+        <div class="col-lg-2">
+          Details of car: {{car.carName}}
+        </div>
+        <div class="col-lg-10">
+          <b>Repairs:</b>
+          <hr />
+          <table class="table table-hover">
+            <thead>
+              <th>Id.</th>
+              <th>Date Start</th>
+              <th>Date End</th>
+              <th>Note</th>
+              <th>Cost</th>
+              <th>Status</th>
+            </thead>
+            <tbody>
+              <tr *ngFor = "let r of car.repairs">
+                <td>{{r.id}}</td>
+                <td>{{r.dateStart | date:'yyyy-MM-dd'}}</td>
+                <td>{{r.dateEnd | date:'yyyy-MM-dd '}}</td>
+                <td>{{r.note}}</td>
+                <td>{{r.cost}}</td>
+                <td>{{r.status.progress}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </accordion-group>
+  </accordion>
+</div>

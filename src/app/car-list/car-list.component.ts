@@ -130,5 +130,9 @@ export class CarListComponent implements OnInit {
   }
   filterCarsWithoutCheckouts(){
     this.checkoutsFiltr = true;
+    this.cS.getAllCarsChecouts()
+    .subscribe((source)=>{
+      this.wholeCarsList=source
+    }); 
   }
 }

@@ -41,4 +41,7 @@ export class CarService {
   getAllCarsLendsFree(){
     return this.ds.getData(this.getAllCarsLendsFreeUrl);
   }
+  getAllCarsChecouts(){
+    return this.ds.getData(this.getAllCarsCheckoutsUrl);
+  }
 }

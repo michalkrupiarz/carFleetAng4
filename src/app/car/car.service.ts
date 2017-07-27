@@ -18,7 +18,8 @@ export class CarService {
   private getAllCarsSortedByTiresUrl=this.sortCarsByUrl+'tires';
   private getAllCarsLendsTakenUrl = this.sortCarsByUrl+'taken';
   private getAllCarsLendsFreeUrl =this.sortCarsByUrl+'free';
-  private getAllCarsCheckoutsUrl = this.sortCarsByUrl+'checkouts'
+  private getAllCarsCheckoutsUrl = this.sortCarsByUrl+'checkouts';
+  private getAllCarsInsurancesUrl=this.sortCarsByUrl+'insurances';
 
   getAllCars(){
   return this.ds.getData(this.getAllCarsUrl);
@@ -43,5 +44,8 @@ export class CarService {
   }
   getAllCarsChecouts(){
     return this.ds.getData(this.getAllCarsCheckoutsUrl);
+  }
+  getAllCarsInsurances(){
+    return this.ds.getData(this.getAllCarsInsurancesUrl);
   }
 }

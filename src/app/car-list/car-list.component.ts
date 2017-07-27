@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,EventEmitter,Output,Input } from '@angular/core';
 import {Response} from '@angular/http';
 import {Car} from '../car.model';
 import {Observable} from 'rxjs/Observable';
@@ -12,6 +12,7 @@ import { SortingService} from '../usableServices/sorting.service';
 import {SortCarService} from '../usableServices/sort-car.service';
 
 
+
 @Component({
   selector: 'app-car-list',
   templateUrl: './car-list.component.html',
@@ -19,6 +20,7 @@ import {SortCarService} from '../usableServices/sort-car.service';
 })
 
 export class CarListComponent implements OnInit {
+  @Output() pickedCar:EventEmitter<Car> = new EventEmitter<Car>();
 
   constructor(private cS: CarService
     ,private rS: RepairService
@@ -39,6 +41,9 @@ export class CarListComponent implements OnInit {
   private takenCars:boolean = false;
   private freeCars:boolean = false;
   private checkoutsFiltr:boolean = false;
+  private insurancesFilter:boolean = false;
+  private tiresFilter:boolean = false;
+  private isExpanded:boolean=true;
 
   ngOnInit() {
     this.getWholeCarsList();
@@ -133,6 +138,29 @@ export class CarListComponent implements OnInit {
     this.cS.getAllCarsChecouts()
     .subscribe((source)=>{
       this.wholeCarsList=source
-    }); 
+    });
+  }
+  clearInsurancesFilter(){
+    this.insurancesFilter=false;
+    this.clearFilters();
+  }
+  filterCarsWithInsurances(){
+    this.insurancesFilter=true;
+    this.cS.getAllCarsInsurances()
+    .subscribe((s)=>{
+      this.wholeCarsList=s;
+    })
+  }
+
+  clearTiresFilter(){
+    this.tiresFilter=false;
+    this.clearFilters();
+  }
+  filterCarsWithoutTires(){
+    this.cS.getAllCarsSortedByTires()
+    .subscribe((s)=>{
+      this.wholeCarsList = s;
+    });
+    this.tiresFilter=true;
   }
 }

@@ -18,6 +18,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { TireComponent } from './tire/tire.component';
 import { TireListComponent } from './tire-list/tire-list.component';
 import { SortCarService} from './usableServices/sort-car.service';
+import { CarDetailsComponent } from './car-details/car-details.component';
+import { CarListHeaderComponent } from './car-list-header/car-list-header.component';
 
 
 @NgModule({
@@ -29,7 +31,9 @@ import { SortCarService} from './usableServices/sort-car.service';
     RepairComponent,
     DashboardComponent,
     TireComponent,
-    TireListComponent
+    TireListComponent,
+    CarDetailsComponent,
+    CarListHeaderComponent
   ],
   imports: [
     BrowserModule,

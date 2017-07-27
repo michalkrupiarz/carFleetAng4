@@ -74,8 +74,25 @@
         class="glyphicon glyphicon-remove-circle">
       </span>
     </th>
-    <th width="10%">Insurances</th>
-    <th width="10%">Tires</th>
+    <th width="10%">Insurances
+      <span *ngIf="!insurancesFilter"
+      (click)="filterCarsWithInsurances()"
+      class="glyphicon glyphicon-filter">
+    </span>
+      <span *ngIf = "insurancesFilter"
+      (click)="clearInsurancesFilter()"
+      class="glyphicon glyphicon-remove-circle">
+    </span>
+    </th>
+    <th width="10%">Tires
+      <span *ngIf="!tiresFilter"
+      (click)="filterCarsWithoutTires()"
+      class="glyphicon glyphicon-filter">
+      </span>
+      <span *ngIf = "tiresFilter"
+      (click)="clearTiresFilter()"
+      class="glyphicon glyphicon-remove-circle"></span>
+    </th>
   <tr>
   </thead>
 </table>
@@ -87,7 +104,10 @@
           <table  class="table">
             <tbody>
               <tr>
-                <td width="5%">{{car.id}}</td>
+                <td width="5%">
+                  <span class="glyphicon glyphicon-resize-vertical"></span>
+
+                    {{car.id}}</td>
                 <td width="15%">{{car.carName}}</td>
                 <td width="15%">{{car.carRegistration}}</td>
                 <td width="10%">
@@ -134,33 +154,9 @@
           </table>
         </div>
       <div>
-        <div class="col-lg-2">
-          Details of car: {{car.carName}}
-        </div>
-        <div class="col-lg-10">
-          <b>Repairs:</b>
-          <hr />
-          <table class="table table-hover">
-            <thead>
-              <th>Id.</th>
-              <th>Date Start</th>
-              <th>Date End</th>
-              <th>Note</th>
-              <th>Cost</th>
-              <th>Status</th>
-            </thead>
-            <tbody>
-              <tr *ngFor = "let r of car.repairs">
-                <td>{{r.id}}</td>
-                <td>{{r.dateStart | date:'yyyy-MM-dd'}}</td>
-                <td>{{r.dateEnd | date:'yyyy-MM-dd '}}</td>
-                <td>{{r.note}}</td>
-                <td>{{r.cost}}</td>
-                <td>{{r.status.progress}}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <app-car-details
+          [pickedCar]="car"
+        ></app-car-details>
       </div>
     </accordion-group>
   </accordion>

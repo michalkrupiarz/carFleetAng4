@@ -19,7 +19,12 @@ import { TireComponent } from './tire/tire.component';
 import { TireListComponent } from './tire-list/tire-list.component';
 import { SortCarService} from './usableServices/sort-car.service';
 import { CarDetailsComponent } from './car-details/car-details.component';
-import { CarListHeaderComponent } from './car-list-header/car-list-header.component';
+import { LendsListComponent } from './lends-list/lends-list.component';
+import { LendComponent } from './lend/lend.component';
+import {LendServiceService} from './lend/lend-service.service';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { CheckoutsListComponent } from './checkouts-list/checkouts-list.component';
+import {CheckoutService} from './checkout/checkout.service';
 
 
 @NgModule({
@@ -33,7 +38,10 @@ import { CarListHeaderComponent } from './car-list-header/car-list-header.compon
     TireComponent,
     TireListComponent,
     CarDetailsComponent,
-    CarListHeaderComponent
+    LendsListComponent,
+    LendComponent,
+    CheckoutComponent,
+    CheckoutsListComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +53,9 @@ import { CarListHeaderComponent } from './car-list-header/car-list-header.compon
   providers: [DataService,
     CarService,
     RepairService,
-    SortCarService],
+    SortCarService,
+  LendServiceService,
+CheckoutService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

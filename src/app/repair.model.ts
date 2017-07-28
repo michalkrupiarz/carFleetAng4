@@ -1,4 +1,5 @@
 import {Car} from './car.model';
+import {Status} from './status.model';
 
 export class Repair {
   id: number;
@@ -7,6 +8,7 @@ export class Repair {
   note:String;
   cost:number;
   car:Car;
+  status:Status;
 
   constructor (obj?:any){
     this.id = obj.id;
@@ -15,5 +17,6 @@ export class Repair {
     this.note = obj.note;
     this.cost = obj.cost;
     this.car = obj.car;
+    this.status = obj.status;
   }
 }

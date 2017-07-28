@@ -4,12 +4,12 @@
       <thead>
         <tr>
           <th>Id.</th>
-          <th>Car registration</th>
           <th>Car Name</th>
-          <th>Date From</th>
-          <th>Date To</th>
-          <th>Note</th>
+          <th>Car Registration</th>
+          <th>Date Start</th>
+          <th>Date End</th>
           <th>Cost</th>
+          <th>Ins. Company</th>
           <th>Status</th>
         </tr>
       </thead>
@@ -19,21 +19,21 @@
               here will be search components, figure out how to style it differently
             </td>
           </tr>
-          <tr *ngFor = "let c of allCheckouts">
+          <tr *ngFor = "let i of allInsurances">
             <td>
-              {{c.id}}
+              {{i.id}}
             </td>
-            <td>{{c.car.carRegistration}}</td>
-            <td>{{c.car.carName}}</td>
-            <td>{{c.dateFrom | date:'yyyy-MM-dd'}}
+            <td>{{i.car.carRegistration}}</td>
+            <td>{{i.car.carName}}</td>
+            <td>{{i.dateStart | date:'yyyy-MM-dd'}}
             </td>
-            <td>{{c.dateTo| date:'yyyy-MM-dd'}}
+            <td>{{i.dateEnd| date:'yyyy-MM-dd'}}
             </td>
-            <td>{{c.note}}
+            <td>{{i.cost }}
             </td>
-            <td>{{c.cost }}
+            <td>{{i.insCompany}}
             </td>
-            <td>{{c.status.status}} </td>
+            <td>{{i.status.status}} </td>
           </tr>
       </tbody>
     </table>

@@ -1,5 +1,5 @@
-import {Car} from './car.model';
 import {Status} from './status.model';
+import {Car} from './car.model';
 
 export class Lend {
   id:number;
@@ -7,6 +7,7 @@ export class Lend {
   lendEnd:Date;
   person:String;
   status:Status;
+  car:Car;
 
   constructor(obj?:any){
     this.id = obj.id;
@@ -14,6 +15,7 @@ export class Lend {
     this.lendEnd = obj.lendEnd;
     this.person = obj.person;
     this.status = obj.status;
+    this.car = obj.car;
   }
 
 }

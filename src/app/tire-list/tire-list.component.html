@@ -1,3 +1,35 @@
-<p>
-  tire-list works!
-</p>
+
+
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th>Id.</th>
+          <th>Car Name</th>
+          <th>Car Registration</th>
+          <th>Type</th>
+          <th>Change Date</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td colspan="6" class="search_bar">
+              here will be search components, figure out how to style it differently
+            </td>
+          </tr>
+          <tr *ngFor = "let t of allTires">
+            <td>
+              {{t.id}}
+            </td>
+            <td>{{t.car.carRegistration}}</td>
+            <td>{{t.car.carName}}</td>
+            <td>
+              {{t.type}}
+            </td>
+            <td>{{t.changeDate | date:'yyyy-MM-dd'}}
+            </td>
+
+            <td>{{t.status.progress}} </td>
+          </tr>
+      </tbody>
+    </table>

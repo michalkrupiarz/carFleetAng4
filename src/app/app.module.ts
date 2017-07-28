@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {HttpModule} from '@angular/http';
-import {Car} from './car.model';
+import { HttpModule} from '@angular/http';
+import { Car} from './car.model';
 
 import { AppComponent } from './app.component';
 import { CarComponent } from './car/car.component';
@@ -12,7 +12,7 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { RepairsListComponent } from './repairs-list/repairs-list.component';
-import {RepairService} from './repair/repair.service';
+import { RepairService} from './repair/repair.service';
 import { RepairComponent } from './repair/repair.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { TireComponent } from './tire/tire.component';
@@ -21,10 +21,14 @@ import { SortCarService} from './usableServices/sort-car.service';
 import { CarDetailsComponent } from './car-details/car-details.component';
 import { LendsListComponent } from './lends-list/lends-list.component';
 import { LendComponent } from './lend/lend.component';
-import {LendServiceService} from './lend/lend-service.service';
+import { LendServiceService} from './lend/lend-service.service';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { CheckoutsListComponent } from './checkouts-list/checkouts-list.component';
-import {CheckoutService} from './checkout/checkout.service';
+import { CheckoutService } from './checkout/checkout.service';
+import { InsuranceComponent } from './insurance/insurance.component';
+import { InsurancesListComponent } from './insurances-list/insurances-list.component';
+import { InsuranceService } from './insurance/insurance.service';
+import { TireServiceService} from './tire/tire.service';
 
 
 @NgModule({
@@ -41,7 +45,9 @@ import {CheckoutService} from './checkout/checkout.service';
     LendsListComponent,
     LendComponent,
     CheckoutComponent,
-    CheckoutsListComponent
+    CheckoutsListComponent,
+    InsuranceComponent,
+    InsurancesListComponent
   ],
   imports: [
     BrowserModule,
@@ -54,8 +60,10 @@ import {CheckoutService} from './checkout/checkout.service';
     CarService,
     RepairService,
     SortCarService,
-  LendServiceService,
-CheckoutService],
+    LendServiceService,
+    CheckoutService,
+    InsuranceService,
+    TireServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

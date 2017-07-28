@@ -10,5 +10,10 @@ export class TireServiceService {
 
   constructor(private ds:DataService) {
    }
+   private allTiresUrl = 'getAllTires';
 
+  getAllTires(){
+    console.log('weszlo do servicu')
+    return this.ds.getData(this.allTiresUrl);
+  }
 }

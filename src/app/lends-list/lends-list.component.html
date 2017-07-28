@@ -1,6 +1,8 @@
 <table class="table table-hover table-striped">
   <thead>
     <th>Id.</th>
+    <th>Car registration</th>
+    <th>Car Name</th>
     <th>Lend Start</th>
     <th>Lend End</th>
     <th>Person</th>
@@ -8,12 +10,14 @@
   </thead>
   <tbody>
     <tr>
-      <td colspan="5" class="search_bar">
+      <td colspan="7" class="search_bar">
         here will be search components, figure out how to style it differently
       </td>
     </tr>
     <tr *ngFor = "let lend of allLends">
       <td>{{lend.id}}</td>
+      <td>{{lend.car.carRegistration}}</td>
+      <td>{{lend.car.carName}}</td>
       <td>{{lend.lendStart | date:'yyyy-MM-dd'}}</td>
       <td>{{lend.lendEnd | date:'yyyy-MM-dd'}}</td>
       <td>{{lend.person}}</td>

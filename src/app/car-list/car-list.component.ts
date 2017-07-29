@@ -8,8 +8,7 @@ import {RepairService} from '../repair/repair.service';
 import {Event} from '@angular/router';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { TabsModule } from 'ngx-bootstrap/tabs';
-import { SortingService} from '../usableServices/sorting.service';
-import {SortCarService} from '../usableServices/sort-car.service';
+import {SortingService} from '../usableServices/sorting.service';
 
 
 
@@ -23,8 +22,8 @@ export class CarListComponent implements OnInit {
   @Output() pickedCar:EventEmitter<Car> = new EventEmitter<Car>();
 
   constructor(private cS: CarService
-    ,private rS: RepairService
-    ,private sortCarServ: SortCarService) { }
+    ,private rS: RepairService,
+    private sS:SortingService) { }
 
   private wholeCarsList: Car[];
   private carsWithRepairsPendingList:Car[];
@@ -73,23 +72,22 @@ export class CarListComponent implements OnInit {
   }
   sortByCarNameAlphabeticaly(){
     this.alphSortedNames = false;
-    this.wholeCarsList =
-    this.sortCarServ.sortNameInAlphabeticalOrder(this.wholeCarsList);
+    this.wholeCarsList =this.sS.sortInAlphabeticalOrder(this.wholeCarsList,'carName',true);
   }
   sortByCarNameReversedAlphabeticaly(){
     this.alphSortedNames = true;
     this.wholeCarsList =
-    this.sortCarServ.sortNameInReversedAlphabeticalOrder(this.wholeCarsList);
+    this.sS.sortInReversedAlphabeticalOrder(this.wholeCarsList,'carName',true);
   }
   sortByCarRegAlphabeticaly(){
     this.alphSortedReg = false;
     this.wholeCarsList =
-    this.sortCarServ.sortRegInAlphabeticalOrder(this.wholeCarsList);
+    this.sS.sortInAlphabeticalOrder(this.wholeCarsList,'carRegistration',true);
   }
   sortByCarRegReversedAlphabeticaly(){
     this.alphSortedReg = true;
     this.wholeCarsList =
-    this.sortCarServ.sortRegInReversedAlphabeticalOrder(this.wholeCarsList);
+    this.sS.sortInReversedAlphabeticalOrder(this.wholeCarsList,'carRegistration',true);
   }
   filterCarsWithPendingRepairsRepair(){
     this.cS.getCarsWithPendingRepairs()

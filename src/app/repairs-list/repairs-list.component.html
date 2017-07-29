@@ -3,17 +3,64 @@
     <table class="table table-striped table-hover">
       <thead>
         <tr>
-          <th>Id.</th>
-          <th>Car Registration</th>
-          <th>Car Name</th>
-          <th>Repair Start</th>
-          <th>Repair End</th>
-          <th>Repair Status</th>
+          <th>Id.
+          </th>
+          <th>Car Registration
+            <span *ngIf = "!regSorted; else sortedReg">
+              <span (click) = "sortByReg()"
+              class="fa fa-sort-alpha-asc"></span>
+            </span>
+
+            <ng-template #sortedReg>
+              <span class="fa fa-sort-alpha-desc"
+              (click)="sortByRegReversed()"></span>
+            </ng-template>
+
+          </th>
+          <th>Car Name
+            <span *ngIf = "!nameSorted; else sortedName">
+              <span (click) = "sortByName()"
+              class="fa fa-sort-alpha-asc"></span>
+            </span>
+
+            <ng-template #sortedName>
+              <span class="fa fa-sort-alpha-desc"
+              (click)="sortByNameReversed()"></span>
+            </ng-template>
+          </th>
+          <th>
+            Repair Start
+            <span *ngIf = "!startSorted; else sortedStart"
+             (click) = "sortByDateStartAsc()"
+             class= "fa fa-sort-amount-asc"></span>
+           <ng-template #sortedStart>
+             <span (click) = "sortByDateStartDesc()"
+             class="fa fa-sort-amount-desc"></span>
+          </ng-template></th>
+          <th>
+            Repair End
+            <span *ngIf = "!endSorted; else sortedEnd"
+            (click) = "sortByDateEndAsc()"
+            class = "fa fa-sort-amount-asc"></span>
+            <ng-template #sortedEnd>
+              <span (click)="sortByDateEndDesc()"
+              class="fa fa-sort-amount-desc"></span>
+            </ng-template></th>
+          <th>Repair Status
+            <span *ngIf = "!statusSorted; else sortedStatus"
+            (click) = "filterByStatus()"
+            class = "fa fa-wrench"></span>
+            <ng-template #sortedStatus>
+            <span (click) = "removeStatusFilter()"
+            class = "fa fa-times-circle-o">
+            </span></ng-template>
+            </th>
+          <th>Repair Cost</th>
         </tr>
       </thead>
       <tbody>
           <tr>
-            <td colspan="6" class="search_bar">
+            <td colspan="7" class="search_bar">
               here will be search components, figure out how to style it differently
             </td>
           </tr>
@@ -30,6 +77,9 @@
             <td>{{r.dateEnd | date:'yyyy-MM-dd '}}
             </td>
             <td>{{r.status.progress}}
+            </td>
+            <td>
+              {{r.cost}}
             </td>
           </tr>
       </tbody>

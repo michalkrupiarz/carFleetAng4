@@ -7,20 +7,20 @@
     <th width="15%">Mark
       <span *ngIf="alphSortedNames"
         (click)="sortByCarNameAlphabeticaly()"
-        class="glyphicon glyphicon-sort-by-alphabet">
+        class="fa fa-sort-alpha-asc">
       </span>
       <span *ngIf="!alphSortedNames"
       (click)="sortByCarNameReversedAlphabeticaly()"
-      class="glyphicon glyphicon-sort-by-alphabet-alt"></span>
+      class="fa fa-sort-alpha-desc"></span>
     </th>
     <th width="15%">Registration
       <span *ngIf="alphSortedReg"
         (click)="sortByCarRegAlphabeticaly()"
-        class="glyphicon glyphicon-sort-by-alphabet">
+        class="fa fa-sort-alpha-asc">
       </span>
       <span *ngIf="!alphSortedReg"
       (click)="sortByCarRegReversedAlphabeticaly()"
-      class="glyphicon glyphicon-sort-by-alphabet-alt"></span>
+      class="fa fa-sort-alpha-desc"></span>
     </th>
     <th width="10%">Repairs
       <span *ngIf = "!filteredByRepairs"

@@ -17,7 +17,6 @@ import { RepairComponent } from './repair/repair.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { TireComponent } from './tire/tire.component';
 import { TireListComponent } from './tire-list/tire-list.component';
-import { SortCarService} from './usableServices/sort-car.service';
 import { CarDetailsComponent } from './car-details/car-details.component';
 import { LendsListComponent } from './lends-list/lends-list.component';
 import { LendComponent } from './lend/lend.component';
@@ -29,6 +28,7 @@ import { InsuranceComponent } from './insurance/insurance.component';
 import { InsurancesListComponent } from './insurances-list/insurances-list.component';
 import { InsuranceService } from './insurance/insurance.service';
 import { TireServiceService} from './tire/tire.service';
+import { SortingService } from './usableServices/sorting.service';
 
 
 @NgModule({
@@ -59,11 +59,11 @@ import { TireServiceService} from './tire/tire.service';
   providers: [DataService,
     CarService,
     RepairService,
-    SortCarService,
     LendServiceService,
     CheckoutService,
     InsuranceService,
-    TireServiceService],
+    TireServiceService,
+    SortingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

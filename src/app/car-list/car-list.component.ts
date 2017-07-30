@@ -44,10 +44,35 @@ export class CarListComponent implements OnInit {
   private tiresFilter:boolean = false;
   private isExpanded:boolean=true;
 
+  private names = {'mark':false,
+'registration':false,
+'repairs':false,
+'lendsAll':false,
+'lendsOut':false,
+'lendsIn':false,
+'checkouts':false,
+'insurances':false,
+'tires':false};
+
   ngOnInit() {
     this.getWholeCarsList();
     this.getCarsWithPendingRepairsNumber();
     this.getCarsWithPendingTires();
+  }
+
+  oneFunction(cars:Car[],action:string,isCar:boolean,objKey:string,fieldName:string){
+    this.names[objKey] = !this.names[objKey];
+    this.wholeCarsList = this.sS.generalSortFunct(cars,action,fieldName,isCar);
+  }
+
+  sortingFunction(cars:Car[],namesKey:string,fieldName:string,fieldValue:string,depth:number){
+    this.names[namesKey] = !this.names[namesKey];
+    this.wholeCarsList = this.sS.generalFilter(cars,fieldName,fieldValue,depth);
+  }
+
+  clearSorting(namesKey:string){
+    this.names[namesKey] = !this.names[namesKey];
+    this.getWholeCarsList();
   }
 
   getWholeCarsList(){
@@ -69,25 +94,6 @@ export class CarListComponent implements OnInit {
       this.carsWithPendingTires = source;
     this.pendingTiresNumber = this.carsWithPendingTires.length
     });
-  }
-  sortByCarNameAlphabeticaly(){
-    this.alphSortedNames = false;
-    this.wholeCarsList =this.sS.sortInAlphabeticalOrder(this.wholeCarsList,'carName',true);
-  }
-  sortByCarNameReversedAlphabeticaly(){
-    this.alphSortedNames = true;
-    this.wholeCarsList =
-    this.sS.sortInReversedAlphabeticalOrder(this.wholeCarsList,'carName',true);
-  }
-  sortByCarRegAlphabeticaly(){
-    this.alphSortedReg = false;
-    this.wholeCarsList =
-    this.sS.sortInAlphabeticalOrder(this.wholeCarsList,'carRegistration',true);
-  }
-  sortByCarRegReversedAlphabeticaly(){
-    this.alphSortedReg = true;
-    this.wholeCarsList =
-    this.sS.sortInReversedAlphabeticalOrder(this.wholeCarsList,'carRegistration',true);
   }
   filterCarsWithPendingRepairsRepair(){
     this.cS.getCarsWithPendingRepairs()

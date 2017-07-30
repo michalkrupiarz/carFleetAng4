@@ -5,30 +5,66 @@
   <tr>
     <th width="5%">Id.</th>
     <th width="15%">Mark
-      <span *ngIf="alphSortedNames"
-        (click)="sortByCarNameAlphabeticaly()"
-        class="fa fa-sort-alpha-asc">
+      <span *ngIf = "!names['mark']; else sortedMark">
+        <span (click) = "oneFunction(
+        wholeCarsList,
+        'Alpha',
+        true,
+        'mark',
+        'carName'
+        )"
+        class="fa fa-sort-alpha-asc"></span>
       </span>
-      <span *ngIf="!alphSortedNames"
-      (click)="sortByCarNameReversedAlphabeticaly()"
-      class="fa fa-sort-alpha-desc"></span>
-    </th>
+
+      <ng-template #sortedMark>
+        <span class="fa fa-sort-alpha-desc"
+        (click)="oneFunction(
+        wholeCarsList,
+        'rAlpha',
+        true,
+        'mark',
+        'carName'
+        )"></span>
+      </ng-template>
     <th width="15%">Registration
-      <span *ngIf="alphSortedReg"
-        (click)="sortByCarRegAlphabeticaly()"
-        class="fa fa-sort-alpha-asc">
+      <span *ngIf = "!names['registration']; else sortedRegistration">
+        <span (click) = "oneFunction(
+        wholeCarsList,
+        'Alpha',
+        true,
+        'registration',
+        'carRegistration'
+        )"
+        class="fa fa-sort-alpha-asc"></span>
       </span>
-      <span *ngIf="!alphSortedReg"
-      (click)="sortByCarRegReversedAlphabeticaly()"
-      class="fa fa-sort-alpha-desc"></span>
+
+      <ng-template #sortedRegistration>
+        <span class="fa fa-sort-alpha-desc"
+        (click)="oneFunction(
+        wholeCarsList,
+        'rAlpha',
+        true,
+        'registration',
+        'carRegistration'
+        )"></span>
+      </ng-template>
     </th>
     <th width="10%">Repairs
-      <span *ngIf = "!filteredByRepairs"
-      (click)="filterCarsWithPendingRepairsRepair()"
-        class="glyphicon glyphicon-filter"></span>
-        <span *ngIf = "filteredByRepairs"
-        (click) = "clearRepairsFilter()"
-        class="glyphicon glyphicon-remove-circle"></span>
+      <span *ngIf = "!names['repairs']; else filteredRepairs">
+        <span (click) = "sortingFunction(
+        wholeCarsList,
+        'repairs',
+        'repairs.status.progress',
+        'in status',
+        '2'
+        )"
+        class="fa fa-filter"></span>
+      </span>
+
+      <ng-template #filteredRepairs>
+        <span class="fa fa-times-circle-o"
+        (click)="clearSorting('repairs')"></span>
+      </ng-template>
     </th>
     <th width="15%">Lends |
       <span *ngIf="lendsAllCars; else lendsFilter">

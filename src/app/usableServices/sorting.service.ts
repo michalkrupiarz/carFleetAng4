@@ -3,8 +3,6 @@ import { Injectable,Inject} from '@angular/core';
 @Injectable()
 export class SortingService {
 
-
-
   constructor() { }
 
 
@@ -80,7 +78,13 @@ export class SortingService {
     })
     return sorted;
   }
-
+/**
+ * [filterOutStatus description]
+ * @param  {any}     toSort [array to filter]
+ * @param  {string}  name   [field that will be used to filter]
+ * @param  {boolean} isCar  [wheter it it sub array of in array]
+ * @return {[type]}         [description]
+ */
 filterOutStatus(toSort:any,name:string,isCar:boolean){
   let sorted;
   if(isCar){
@@ -92,6 +96,37 @@ filterOutStatus(toSort:any,name:string,isCar:boolean){
       return el[name].toLowerCase()==='in status'
     })
   }
+  return sorted;
+  }
+  /**
+   * [generalFilter description]
+   * @param  {any}     toSort [array to filter]
+   * @param  {string}  name   [field name that will be used to filter]
+   * @param  {string}  value  [value that will be left for name]
+   * @param  {boolean} isCar  [wheter it is sub array or not]
+   * @return {[type]}         [filtered input array]
+   */
+  generalFilter(toSort:any,name:string,value:string,depth:number){
+
+    let sorted:any = [];
+    if(depth==1){
+       sorted = toSort.filter(function (el){
+        return el[name.split('.')[0]][name.split('.')[1]].toLowerCase()===value;
+      });
+    } else if (depth ==0){
+       sorted = toSort.filter(function (el){
+        return el[name].toLowerCase()===value;
+      })
+    } else if (depth ==2){
+        for (let item in toSort){
+           for (let subItem in toSort[item][name.split('.')[0]]){
+             if (toSort[item][name.split('.')[0]]
+             [subItem][name.split('.')[1]][name.split('.')[2]] === value){
+             sorted.push(toSort[item]);
+             }
+           }
+        }
+    }
   return sorted;
   }
 }

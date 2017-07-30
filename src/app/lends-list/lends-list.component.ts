@@ -22,6 +22,9 @@ export class LendsListComponent implements OnInit {
   private lendStartSorted:boolean = false;
   private lendEndSorted: boolean = false;
 
+  private obj = {'reg':true,
+'name':true};
+
   ngOnInit() {
     this.getAllLends();
   }
@@ -35,7 +38,8 @@ export class LendsListComponent implements OnInit {
     this.getAllLends();
   }
 
-  sortCarRegAlphaOrder(){
+  sortCarRegAlphaOrder(key:string){
+    console.log(key,this.obj[key]);
     this.carRegSorted = true;
     this.allLends = this.sS.sortInAlphabeticalOrder(this.allLends,'car.carRegistration',false);
   }

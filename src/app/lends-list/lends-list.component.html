@@ -3,7 +3,7 @@
     <th>Id.</th>
     <th>Car registration
       <span *ngIf = "!carRegSorted; else sortedReg">
-        <span (click) = "sortCarRegAlphaOrder()"
+        <span (click) = "sortCarRegAlphaOrder('reg')"
         class="fa fa-sort-alpha-asc"></span>
       </span>
 

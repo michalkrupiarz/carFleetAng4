@@ -3,6 +3,7 @@ import {Lend} from '../lend.model';
 import {LendServiceService} from '../lend/lend-service.service';
 import {Response} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
+import {SortingService} from '../usableServices/sorting.service';
 
 @Component({
   selector: 'app-lends-list',
@@ -11,9 +12,15 @@ import {Observable} from 'rxjs/Observable';
 })
 export class LendsListComponent implements OnInit {
 
-  constructor(private lS:LendServiceService) { }
+  constructor(private lS:LendServiceService,
+  private sS:SortingService) { }
 
   private allLends:Lend[];
+
+  private carRegSorted : boolean = false;
+  private carNameSorted: boolean = false;
+  private lendStartSorted:boolean = false;
+  private lendEndSorted: boolean = false;
 
   ngOnInit() {
     this.getAllLends();
@@ -24,5 +31,40 @@ export class LendsListComponent implements OnInit {
       this.allLends = source;
     })
   }
+  cleanSorting(){
+    this.getAllLends();
+  }
 
+  sortCarRegAlphaOrder(){
+    this.carRegSorted = true;
+    this.allLends = this.sS.sortInAlphabeticalOrder(this.allLends,'car.carRegistration',false);
+  }
+  sortcarRegReversAlphOrder(){
+    this.carRegSorted = false;
+    this.allLends = this.sS.sortInReversedAlphabeticalOrder(this.allLends,'car.carRegistration',false);
+  }
+  sortCarNameAlphOrder(){
+    this.carNameSorted = true;
+    this.allLends= this.sS.sortInAlphabeticalOrder(this.allLends,'car.carName',false);
+  }
+  sortCarNameReversAlphOrder(){
+    this.carNameSorted = false;
+    this.allLends = this.sS.sortInReversedAlphabeticalOrder(this.allLends,'car.carName',false);
+  }
+  sortLendStartAsc(){
+    this.lendStartSorted = true;
+    this.allLends = this.sS.sortDatesFromAsc(this.allLends,'lendStart',true);
+  }
+  sortLendStartDesc(){
+    this.lendStartSorted = false;
+    this.allLends = this.sS.sortDatesFromDesc(this.allLends,'lednStart',true);
+  }
+  sortLendEndAsc(){
+    this.lendEndSorted = true;
+    this.allLends = this.sS.sortDatesFromAsc(this.allLends,'lendEnd',true);
+  }
+  sortLendEndDesc(){
+    this.lendEndSorted= false;
+    this.allLends = this.sS.sortDatesFromDesc(this.allLends,'lednEnd',true);
+  }
 }

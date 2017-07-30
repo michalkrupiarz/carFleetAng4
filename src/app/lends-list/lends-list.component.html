@@ -1,10 +1,49 @@
 <table class="table table-hover table-striped">
   <thead>
     <th>Id.</th>
-    <th>Car registration</th>
-    <th>Car Name</th>
-    <th>Lend Start</th>
-    <th>Lend End</th>
+    <th>Car registration
+      <span *ngIf = "!carRegSorted; else sortedReg">
+        <span (click) = "sortCarRegAlphaOrder()"
+        class="fa fa-sort-alpha-asc"></span>
+      </span>
+
+      <ng-template #sortedReg>
+        <span class="fa fa-sort-alpha-desc"
+        (click)="sortcarRegReversAlphOrder()"></span>
+      </ng-template>
+    </th>
+    <th>Car Name
+      <span *ngIf = "!carNameSorted; else sortedName">
+        <span (click) = "sortCarNameAlphOrder()"
+        class="fa fa-sort-alpha-asc"></span>
+      </span>
+
+      <ng-template #sortedName>
+        <span class="fa fa-sort-alpha-desc"
+        (click)="sortCarNameReversAlphOrder()"></span>
+      </ng-template>
+    </th>
+
+    <th>Lend Start
+      <span *ngIf = "!lendStartSorted; else sortedStart"
+       (click) = "sortLendStartAsc()"
+       class= "fa fa-sort-amount-asc"></span>
+     <ng-template #sortedStart>
+       <span (click) = "sortLendStartDesc()"
+       class="fa fa-sort-amount-desc"></span>
+    </ng-template>
+    </th>
+
+    <th>Lend End
+      <span *ngIf = "!lendEndSorted; else endStart"
+       (click) = "sortLendEndAsc()"
+       class= "fa fa-sort-amount-asc"></span>
+     <ng-template #endStart>
+       <span (click) = "sortLendEndDesc()"
+       class="fa fa-sort-amount-desc"></span>
+    </ng-template>
+    </th>
+
     <th>Person</th>
     <th>Status</th>
   </thead>

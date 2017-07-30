@@ -83,7 +83,7 @@ export class RepairsListComponent implements OnInit {
 
   filterByStatus(){
     this.statusSorted = true;
-    this.repairsWholeList = this.sS.filterOutStatus(this.repairsWholeList,this.repairStatusFieldName,false) ;
+    this.repairsWholeList = this.sS.filterOutStatus(this.repairsWholeList,this.repairStatusFieldName,true) ;
   }
 
   removeStatusFilter(){

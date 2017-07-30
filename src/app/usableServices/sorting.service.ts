@@ -77,10 +77,16 @@ export class SortingService {
   }
 
 filterOutStatus(toSort:any,name:string,isCar:boolean){
-  let sorted = toSort.filter(function (el){
-    return el[name.split('.')[0]][name.split('.')[1]].toLowerCase()==='in status'
-  });
-
+  let sorted;
+  if(isCar){
+     sorted = toSort.filter(function (el){
+      return el[name.split('.')[0]][name.split('.')[1]].toLowerCase()==='in status'
+    });
+  } else {
+     sorted = toSort.filter(function (el){
+      return el[name].toLowerCase()==='in status'
+    })
+  }
   return sorted;
-}
+  }
 }

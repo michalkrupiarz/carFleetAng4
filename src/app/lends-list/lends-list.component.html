@@ -2,44 +2,92 @@
   <thead>
     <th>Id.</th>
     <th>Car registration
-      <span *ngIf = "!carRegSorted; else sortedReg">
-        <span (click) = "sortCarRegAlphaOrder('reg')"
+      <span *ngIf = "!obj['reg']; else sortedReg">
+        <span (click) = "oneFunction(
+        allLends,
+        'Alpha',
+        false,
+        'reg',
+        'car.carRegistration'
+        )"
         class="fa fa-sort-alpha-asc"></span>
       </span>
 
       <ng-template #sortedReg>
         <span class="fa fa-sort-alpha-desc"
-        (click)="sortcarRegReversAlphOrder()"></span>
+        (click)="oneFunction(
+        allLends,
+        'rAlpha',
+        false,
+        'reg',
+        'car.carRegistration'
+        )"></span>
       </ng-template>
     </th>
     <th>Car Name
-      <span *ngIf = "!carNameSorted; else sortedName">
-        <span (click) = "sortCarNameAlphOrder()"
+      <span *ngIf = "!obj['name']; else sortedName">
+        <span (click) = "oneFunction(
+        allLends,
+        'Alpha',
+        false,
+        'name',
+        'car.carName'
+        )"
         class="fa fa-sort-alpha-asc"></span>
       </span>
 
       <ng-template #sortedName>
         <span class="fa fa-sort-alpha-desc"
-        (click)="sortCarNameReversAlphOrder()"></span>
+        (click)="oneFunction(
+        allLends,
+        'rAlpha',
+        false,
+        'name',
+        'car.carName'
+        )"></span>
       </ng-template>
     </th>
 
     <th>Lend Start
-      <span *ngIf = "!lendStartSorted; else sortedStart"
-       (click) = "sortLendStartAsc()"
+      <span *ngIf = "!obj['start']; else sortedStart"
+      (click)="oneFunction(
+      allLends,
+      'dateAsc',
+      false,
+      'start',
+      'lendStart'
+      )"
        class= "fa fa-sort-amount-asc"></span>
      <ng-template #sortedStart>
-       <span (click) = "sortLendStartDesc()"
+       <span (click)="oneFunction(
+       allLends,
+       'dateDesc',
+       false,
+       'start',
+       'lendStart'
+       )"
        class="fa fa-sort-amount-desc"></span>
     </ng-template>
     </th>
 
     <th>Lend End
-      <span *ngIf = "!lendEndSorted; else endStart"
-       (click) = "sortLendEndAsc()"
+      <span *ngIf = "!obj['end']; else sortedEnd"
+      (click)="oneFunction(
+      allLends,
+      'dateAsc',
+      false,
+      'end',
+      'lendEnd'
+      )"
        class= "fa fa-sort-amount-asc"></span>
-     <ng-template #endStart>
-       <span (click) = "sortLendEndDesc()"
+     <ng-template #sortedEnd>
+       <span (click)="oneFunction(
+       allLends,
+       'dateDesc',
+       false,
+       'end',
+       'lendEnd'
+       )"
        class="fa fa-sort-amount-desc"></span>
     </ng-template>
     </th>

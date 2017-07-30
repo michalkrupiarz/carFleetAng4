@@ -16,17 +16,18 @@ export class LendsListComponent implements OnInit {
   private sS:SortingService) { }
 
   private allLends:Lend[];
-
-  private carRegSorted : boolean = false;
-  private carNameSorted: boolean = false;
-  private lendStartSorted:boolean = false;
-  private lendEndSorted: boolean = false;
-
-  private obj = {'reg':true,
-'name':true};
+  private obj = {'reg':false,
+                'name':false,
+                'end':false,
+                'start':false};
 
   ngOnInit() {
     this.getAllLends();
+  }
+
+  oneFunction(lends:Lend[],action:string,isCar:boolean,objKey:string,fieldName:string){
+    this.obj[objKey] = !this.obj[objKey];
+    this.allLends = this.sS.generalSortFunct(lends,action,fieldName,isCar);
   }
 
   getAllLends(){
@@ -38,37 +39,6 @@ export class LendsListComponent implements OnInit {
     this.getAllLends();
   }
 
-  sortCarRegAlphaOrder(key:string){
-    console.log(key,this.obj[key]);
-    this.carRegSorted = true;
-    this.allLends = this.sS.sortInAlphabeticalOrder(this.allLends,'car.carRegistration',false);
-  }
-  sortcarRegReversAlphOrder(){
-    this.carRegSorted = false;
-    this.allLends = this.sS.sortInReversedAlphabeticalOrder(this.allLends,'car.carRegistration',false);
-  }
-  sortCarNameAlphOrder(){
-    this.carNameSorted = true;
-    this.allLends= this.sS.sortInAlphabeticalOrder(this.allLends,'car.carName',false);
-  }
-  sortCarNameReversAlphOrder(){
-    this.carNameSorted = false;
-    this.allLends = this.sS.sortInReversedAlphabeticalOrder(this.allLends,'car.carName',false);
-  }
-  sortLendStartAsc(){
-    this.lendStartSorted = true;
-    this.allLends = this.sS.sortDatesFromAsc(this.allLends,'lendStart',true);
-  }
-  sortLendStartDesc(){
-    this.lendStartSorted = false;
-    this.allLends = this.sS.sortDatesFromDesc(this.allLends,'lednStart',true);
-  }
-  sortLendEndAsc(){
-    this.lendEndSorted = true;
-    this.allLends = this.sS.sortDatesFromAsc(this.allLends,'lendEnd',true);
-  }
-  sortLendEndDesc(){
-    this.lendEndSorted= false;
-    this.allLends = this.sS.sortDatesFromDesc(this.allLends,'lednEnd',true);
-  }
+
+
 }

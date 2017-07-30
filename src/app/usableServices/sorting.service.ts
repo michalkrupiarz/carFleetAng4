@@ -3,47 +3,52 @@ import { Injectable,Inject} from '@angular/core';
 @Injectable()
 export class SortingService {
 
+
+
   constructor() { }
+
+
+  generalSortFunct(toSort:any[],action:string,fieldName:string,isCar:boolean){
+    if (action === 'Alpha'){
+      return this.sortInAlphabeticalOrder(toSort,fieldName,isCar);
+    } else if (action === 'rAlpha'){
+      return this.sortInReversedAlphabeticalOrder(toSort,fieldName,isCar);
+    } else if (action === 'dateAsc'){
+      return this.sortDatesFromAsc(toSort,fieldName,isCar);
+    } else if (action === 'dateDesc'){
+      return this.sortDatesFromDesc(toSort,fieldName,isCar);
+    }
+  }
 
   sortInAlphabeticalOrder(unsortedList:any, name:string, isCar:boolean){
     let toSort = unsortedList.slice(0);
-
     if(isCar){
       toSort.sort(function(a,b)
       {
-
             let x = a[name].toLowerCase();
             let y = b[name].toLowerCase();
             return x<y ? -1 : x>y ? 1:0;
-
       });
       return toSort;
     } else {
       toSort.sort(function(a,b)
       {
-
             let x = a[name.split('.')[0]][name.split('.')[1]].toLowerCase();
             let y = b[name.split('.')[0]][name.split('.')[1]].toLowerCase();
             return x<y ? -1 : x>y ? 1:0;
-
       });
       return toSort;
     }
   }
 
-
-
   sortInReversedAlphabeticalOrder(unsortedList: any, name:string, isCar:boolean){
     let toSort = unsortedList.slice(0);
-
     if(isCar){
       toSort.sort(function(a,b)
       {
-
             let x = a[name].toLowerCase();
             let y = b[name].toLowerCase();
             return x<y ? 1 :x>y ? -1:0;
-
       });
       return toSort;
     } else {

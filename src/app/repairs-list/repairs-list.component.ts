@@ -30,70 +30,42 @@ export class RepairsListComponent implements OnInit {
     private repairDateEndFieldName : string = 'dateEnd';
     private repairStatusFieldName : string = 'status.progress';
 
+    private names={'name':false,
+    'registration':false,
+    'start':false,
+    'end':false,
+    'status':false
+    }
+
   ngOnInit() {
+    this.getRepairsWholeList();
+  }
+
+  sortItems(reps:Repair[],action:string,isCar:boolean,objKey:string,fieldName:string){
+    this.names[objKey] = !this.names[objKey];
+    this.repairsWholeList = this.sS.generalSortFunct(reps,action,fieldName,isCar);
+  }
+
+  filterItems(reps:Repair[],namesKey:string,fieldName:string,fieldValue:string,depth:number){
+    this.names[namesKey] = !this.names[namesKey];
+      this.repairsWholeList= this.sS.generalFilter(reps,fieldName,fieldValue,depth);
+
+  }
+
+  clearSorting(namesKey:string){
+    this.names[namesKey] = !this.names[namesKey];
     this.getRepairsWholeList();
   }
 
   getRepairsWholeList(){
     this.rS.getAllRepairs()
     .subscribe((source)=>{
-      console.log("repairs", source);
+
       this.repairsWholeList = source;
       this.repairsWholeListNumber = this.repairsWholeList.length;
     });
   }
-  sortByReg(){
-    this.regSorted=true;
-    this.repairsWholeList = this.sS.sortInAlphabeticalOrder(this.repairsWholeList,this.carRegFieldName,false);
 
-  }
-  sortByRegReversed(){
-    this.regSorted=false;
-    this.repairsWholeList = this.sS.sortInReversedAlphabeticalOrder(this.repairsWholeList,this.carRegFieldName,false);
-  }
-
-  sortByName(){
-    this.nameSorted=true;
-    this.repairsWholeList = this.sS.sortInAlphabeticalOrder(this.repairsWholeList,this.carNameFieldName,false);
-  }
-  sortByNameReversed(){
-    this.nameSorted=false;
-    this.repairsWholeList= this.sS.sortInReversedAlphabeticalOrder(this.repairsWholeList,this.carNameFieldName,false);
-  }
-
-  sortByDateStartAsc(){
-    this.startSorted=true;
-    this.repairsWholeList = this.sS.sortDatesFromAsc(this.repairsWholeList,this.repairDateStartFieldName,false)
-  }
-
-  sortByDateStartDesc(){
-    this.startSorted=false;
-    this.repairsWholeList = this.sS.sortDatesFromDesc(this.repairsWholeList,this.repairDateStartFieldName,false)
-  }
-
-  sortByDateEndAsc(){
-    this.endSorted=true;
-    this.repairsWholeList = this.sS.sortDatesFromAsc(this.repairsWholeList,this.repairDateEndFieldName,false)
-  }
-
-  sortByDateEndDesc(){
-    this.endSorted=false;
-    this.repairsWholeList = this.sS.sortDatesFromDesc(this.repairsWholeList,this.repairDateEndFieldName,false)
-  }
-
-  filterByStatus(){
-    this.statusSorted = true;
-    this.repairsWholeList = this.sS.filterOutStatus(this.repairsWholeList,this.repairStatusFieldName,true) ;
-  }
-
-  removeStatusFilter(){
-    this.statusSorted = false;
-    this.cleanFiltering();
-  }
-
-  cleanFiltering(){
-    this.getRepairsWholeList();
-  }
 
 
 }

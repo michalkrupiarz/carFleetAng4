@@ -97,50 +97,5 @@ export class CarListComponent implements OnInit {
     this.pendingTiresNumber = this.carsWithPendingTires.length
     });
   }
-  filterCarsWithPendingRepairsRepair(){
-    this.cS.getCarsWithPendingRepairs()
-      .subscribe((source)=>{
-        this.wholeCarsList=source;
-        this.filteredByRepairs=true;
-      });
-  }
-  clearFilters(){
-    this.getWholeCarsList();
-  }
 
-
-  clearCheckoutsFilter(){
-    this.checkoutsFiltr = false;
-    this.clearFilters();
-  }
-  filterCarsWithoutCheckouts(){
-    this.checkoutsFiltr = true;
-    this.cS.getAllCarsChecouts()
-    .subscribe((source)=>{
-      this.wholeCarsList=source
-    });
-  }
-  clearInsurancesFilter(){
-    this.insurancesFilter=false;
-    this.clearFilters();
-  }
-  filterCarsWithInsurances(){
-    this.insurancesFilter=true;
-    this.cS.getAllCarsInsurances()
-    .subscribe((s)=>{
-      this.wholeCarsList=s;
-    })
-  }
-
-  clearTiresFilter(){
-    this.tiresFilter=false;
-    this.clearFilters();
-  }
-  filterCarsWithoutTires(){
-    this.cS.getAllCarsSortedByTires()
-    .subscribe((s)=>{
-      this.wholeCarsList = s;
-    });
-    this.tiresFilter=true;
-  }
 }

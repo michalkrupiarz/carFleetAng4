@@ -107,8 +107,8 @@ filterOutStatus(toSort:any,name:string,isCar:boolean){
    * @return {[type]}         [filtered input array]
    */
   generalFilter(toSort:any,name:string,value:string,depth:number){
+    let sorted= [];
 
-    let sorted:any = [];
     if(depth==1){
        sorted = toSort.filter(function (el){
         return el[name.split('.')[0]][name.split('.')[1]].toLowerCase()===value;
@@ -119,14 +119,28 @@ filterOutStatus(toSort:any,name:string,isCar:boolean){
       })
     } else if (depth ==2){
         for (let item in toSort){
-           for (let subItem in toSort[item][name.split('.')[0]]){
-             if (toSort[item][name.split('.')[0]]
-             [subItem][name.split('.')[1]][name.split('.')[2]] === value){
-             sorted.push(toSort[item]);
-             }
-           }
+
+          let thing = this.maxId(toSort[item][name.split('.')[0]]);
+          if (thing === undefined && value === 'done'){
+            sorted.push (toSort[item]);
+          }
+          if(thing !== undefined){
+            if (thing[name.split('.')[1]][name.split('.')[2]] === value){
+              sorted.push(toSort[item]);
+            }
+          };
         }
-    }
-  return sorted;
+      }
+      return sorted;
   }
+  maxId(tab:any){
+    const maxValueOfId = Math.max(...tab.map(o => o['id']),1);
+    for (let item in tab){
+      if (tab[item]['id'] === maxValueOfId){
+        return tab[item];
+      }
+    }
+  }
+
+
 }

@@ -52,7 +52,8 @@ export class CarListComponent implements OnInit {
 'lendsIn':false,
 'checkouts':false,
 'insurances':false,
-'tires':false};
+'tires':false,
+'documents':false};
 
   ngOnInit() {
     this.getWholeCarsList();
@@ -65,9 +66,10 @@ export class CarListComponent implements OnInit {
     this.wholeCarsList = this.sS.generalSortFunct(cars,action,fieldName,isCar);
   }
 
-  sortingFunction(cars:Car[],namesKey:string,fieldName:string,fieldValue:string,depth:number){
+  filterFunction(cars:Car[],namesKey:string,fieldName:string,fieldValue:string,depth:number){
     this.names[namesKey] = !this.names[namesKey];
-    this.wholeCarsList = this.sS.generalFilter(cars,fieldName,fieldValue,depth);
+      this.wholeCarsList = this.sS.generalFilter(cars,fieldName,fieldValue,depth);
+
   }
 
   clearSorting(namesKey:string){
@@ -105,34 +107,8 @@ export class CarListComponent implements OnInit {
   clearFilters(){
     this.getWholeCarsList();
   }
-  clearRepairsFilter(){
-    this.filteredByRepairs = false;
-    this.clearFilters();
-  }
-  clearLendsFilters(){
-    this.lendsAllCars=true;
-    this.clearFilters();
-  }
-  leaveFreeCarsOnly(){
-    console.log("leave free cars only");
-    this.lendsAllCars = false;
-    this.freeCars=true;
-    this.takenCars=false;
-    this.cS.getAllCarsLendsFree()
-      .subscribe((source)=>{
-        this.wholeCarsList=source;
-      })
-  }
-  leaveTakenCarsOnly(){
-    console.log("leave taken cars only");
-    this.lendsAllCars = false;
-    this.takenCars=true;
-    this.freeCars=false;
-    this.cS.getAllCarsLendsTaken()
-      .subscribe((source)=>{
-        this.wholeCarsList=source;
-      })
-  }
+
+
   clearCheckoutsFilter(){
     this.checkoutsFiltr = false;
     this.clearFilters();

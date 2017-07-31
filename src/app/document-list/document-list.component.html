@@ -1,0 +1,33 @@
+
+
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th>Id.</th>
+          <th>Car Name</th>
+          <th>Car Registration</th>
+          <th>Expiration Date</th>
+          <th>Type</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td colspan="6" class="search_bar">
+              here will be search components, figure out how to style it differently
+            </td>
+          </tr>
+          <tr *ngFor = "let d of allDocuments">
+            <td>
+              {{d.id}}
+            </td>
+            <td>{{d.car.carRegistration}}</td>
+            <td>{{d.car.carName}}</td>
+            <td>{{d.expirationDate | date:'yyyy-MM-dd'}}
+            </td>
+            <td>{{d.type }}
+            </td>
+            <td>{{d.status.progress}} </td>
+          </tr>
+      </tbody>
+    </table>

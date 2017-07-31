@@ -51,7 +51,7 @@
     </th>
     <th width="10%">Repairs
       <span *ngIf = "!names['repairs']; else filteredRepairs">
-        <span (click) = "sortingFunction(
+        <span (click) = "filterFunction(
         wholeCarsList,
         'repairs',
         'repairs.status.progress',
@@ -66,68 +66,103 @@
         (click)="clearSorting('repairs')"></span>
       </ng-template>
     </th>
-    <th width="15%">Lends |
-      <span *ngIf="lendsAllCars; else lendsFilter">
-        <span
-        (click)="leaveFreeCarsOnly()"
-        class="glyphicon glyphicon-home" style = "color:green"></span>
-        |
-        <span
-        (click)="leaveTakenCarsOnly()"
-        class="glyphicon glyphicon-road" style = "color:blue"></span>
-      </span> |
-      <ng-template #lendsFilter>
-        <span *ngIf="takenCars">
-          <span
-          (click)="leaveFreeCarsOnly()"
-          class="glyphicon glyphicon-home" style = "color:green"></span> |
-          <span class="label label-warning">
-            <span
-            class=" glyphicon glyphicon-road" style = "color:blue"></span>
-          </span>
-        </span>
-        <span *ngIf="freeCars">
-          <span class="label label-warning">
-            <span
-            class="glyphicon glyphicon-home" style = "color:green"></span>
-          </span> |
-          <span
-          (click)="leaveTakenCarsOnly()"
-          class="glyphicon glyphicon-road" style = "color:blue"></span>
-        </span> |
-        <span
-        (click)="clearLendsFilters()"
-        class="glyphicon glyphicon-remove-circle"></span>
-      </ng-template>
+    <th width="15%">Lends
+      <span *ngIf = "!names['lendsOut']"
+      (click) = "filterFunction(
+      wholeCarsList,
+      'lendsOut',
+      'lends.status.progress',
+      'in status',
+      '2'
+      )"
+      class="fa fa-road" style = "color : blue">
+    </span>
+      <span *ngIf = "!names['lendsOut']"
+      (click) = "filterFunction(
+      wholeCarsList,
+      'lendsOut',
+      'lends.status.progress',
+      'done',
+      '2'
+      )"
+      class = "fa fa-home" style= "color : green">
+    </span>
+    <span *ngIf="names['lendsOut']">
+      <span class = "fa fa-times-circle-o" style = "color : red"
+      (click) = "clearSorting('lendsOut')"></span>
+    </span>
+
     </th>
     <th width="10%">Checkouts
-      <span *ngIf="!checkoutsFiltr"
-      (click)="filterCarsWithoutCheckouts()"
-        class="glyphicon glyphicon-filter">
+
+      <span *ngIf = "!names['checkouts']; else filteredCheckouts">
+        <span (click) = "filterFunction(
+        wholeCarsList,
+        'checkouts',
+        'check.status.progress',
+        'in status',
+        '2'
+        )"
+        class="fa fa-filter"></span>
       </span>
-      <span *ngIf="checkoutsFiltr"
-      (click)="clearCheckoutsFilter()"
-        class="glyphicon glyphicon-remove-circle">
-      </span>
+
+      <ng-template #filteredCheckouts>
+        <span class="fa fa-times-circle-o"
+        (click)="clearSorting('checkouts')"></span>
+      </ng-template>
+
     </th>
     <th width="10%">Insurances
-      <span *ngIf="!insurancesFilter"
-      (click)="filterCarsWithInsurances()"
-      class="glyphicon glyphicon-filter">
-    </span>
-      <span *ngIf = "insurancesFilter"
-      (click)="clearInsurancesFilter()"
-      class="glyphicon glyphicon-remove-circle">
-    </span>
+      <span *ngIf = "!names['insurances']; else filteredInsurances">
+        <span (click) = "filterFunction(
+        wholeCarsList,
+        'insurances',
+        'insurances.status.progress',
+        'in status',
+        '2'
+        )"
+        class="fa fa-filter"></span>
+      </span>
+
+      <ng-template #filteredInsurances>
+        <span class="fa fa-times-circle-o"
+        (click)="clearSorting('insurances')"></span>
+      </ng-template>
     </th>
     <th width="10%">Tires
-      <span *ngIf="!tiresFilter"
-      (click)="filterCarsWithoutTires()"
-      class="glyphicon glyphicon-filter">
+      <span *ngIf = "!names['tires']; else filteredTires">
+        <span (click) = "filterFunction(
+        wholeCarsList,
+        'tires',
+        'tires.status.progress',
+        'in status',
+        '2'
+        )"
+        class="fa fa-filter"></span>
       </span>
-      <span *ngIf = "tiresFilter"
-      (click)="clearTiresFilter()"
-      class="glyphicon glyphicon-remove-circle"></span>
+
+      <ng-template #filteredTires>
+        <span class="fa fa-times-circle-o"
+        (click)="clearSorting('tires')"></span>
+      </ng-template>
+    </th>
+    <th>
+      Documents
+      <span *ngIf = "!names['documents']; else filteredDocuments">
+        <span (click) = "filterFunction(
+        wholeCarsList,
+        'documents',
+        'doc.status.progress',
+        'in status',
+        '2'
+        )"
+        class="fa fa-filter"></span>
+      </span>
+
+      <ng-template #filteredDocuments>
+        <span class="fa fa-times-circle-o"
+        (click)="clearSorting('documents')"></span>
+      </ng-template>
     </th>
   <tr>
   </thead>
@@ -155,13 +190,13 @@
                 </td>
                 <td width="15%">
                     <div *ngIf="!car.lends.length>0">
-                      <span class="glyphicon glyphicon-home" style="color:green"></span>
+                      <span class="fa fa-home" style="color:green"></span>
                   </div>
                     <div *ngFor="let lend of car.lends">
                       <div *ngIf="lend.status.id==2; else carFree">
-                        <span class="glyphicon glyphicon-road" style="color:blue"></span>
+                        <span class="fa fa-road" style="color:blue"></span>
                     </div>
-                    <ng-template #carFree><span class="glyphicon glyphicon-home" style="color:green"></span></ng-template>
+                    <ng-template #carFree><span class="fa fa-home" style="color:green"></span></ng-template>
                   </div>
                 </td>
                 <td width="10%">
@@ -181,6 +216,13 @@
                 <td width="10%">
                   <div *ngFor="let tire of car.tires">
                     <div *ngIf="tire.status.id==2">
+                      <span class="label label-warning">!</span>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div *ngFor="let doc of car.doc">
+                    <div *ngIf="doc.status.id==2">
                       <span class="label label-warning">!</span>
                     </div>
                   </div>

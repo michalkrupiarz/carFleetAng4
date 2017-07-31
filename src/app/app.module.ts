@@ -29,6 +29,9 @@ import { InsurancesListComponent } from './insurances-list/insurances-list.compo
 import { InsuranceService } from './insurance/insurance.service';
 import { TireServiceService} from './tire/tire.service';
 import { SortingService } from './usableServices/sorting.service';
+import { DocumentComponent } from './document/document.component';
+import { DocumentListComponent } from './document-list/document-list.component';
+import {DocumentService} from './document/document.service';
 
 
 @NgModule({
@@ -47,7 +50,9 @@ import { SortingService } from './usableServices/sorting.service';
     CheckoutComponent,
     CheckoutsListComponent,
     InsuranceComponent,
-    InsurancesListComponent
+    InsurancesListComponent,
+    DocumentComponent,
+    DocumentListComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +68,8 @@ import { SortingService } from './usableServices/sorting.service';
     CheckoutService,
     InsuranceService,
     TireServiceService,
-    SortingService],
+    SortingService,
+    DocumentService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

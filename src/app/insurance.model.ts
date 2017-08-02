@@ -7,6 +7,7 @@ export class Insurance {
   private dateEnd: Date;
   private cost: number;
   private insCompany: string;
+  private payDate : Date;
   private car : Car ;
   private status: Status;
 
@@ -15,6 +16,7 @@ export class Insurance {
     this.dateStart=obj.dateStart;
     this.dateEnd = obj.dateEnd;
     this.cost = obj.cost;
+    this.payDate = obj.payDate;
     this.insCompany = obj.insCompany;
     this.car = obj.car;
     this.status = obj.status;

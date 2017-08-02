@@ -60,12 +60,8 @@ export class RepairsListComponent implements OnInit {
   getRepairsWholeList(){
     this.rS.getAllRepairs()
     .subscribe((source)=>{
-
       this.repairsWholeList = source;
       this.repairsWholeListNumber = this.repairsWholeList.length;
     });
   }
-
-
-
 }

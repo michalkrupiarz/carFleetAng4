@@ -44,4 +44,8 @@ sortFunction(ins:Insurance[],action:string,depth:boolean,objKey:string,fieldName
       this.allInsurances = this.sS.generalFilter(ins,fieldName,fieldValue,depth);
 
   }
+  clearSorting(namesKey:string){
+    this.names[namesKey] = !this.names[namesKey];
+    this.getAllInsurances();
+  }
 }

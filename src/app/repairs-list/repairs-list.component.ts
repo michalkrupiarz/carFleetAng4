@@ -18,18 +18,6 @@ export class RepairsListComponent implements OnInit {
     private repairsWholeList: Repair[];
     private repairsWholeListNumber:number;
 
-    private nameSorted : boolean = false;
-    private regSorted : boolean = false;
-    private startSorted : boolean = false;
-    private endSorted : boolean = false;
-    private statusSorted : boolean = false;
-
-    private carRegFieldName : string = 'car.carRegistration';
-    private carNameFieldName : string = 'car.carName';
-    private repairDateStartFieldName : string = 'dateStart';
-    private repairDateEndFieldName : string = 'dateEnd';
-    private repairStatusFieldName : string = 'status.progress';
-
     private names={'name':false,
     'registration':false,
     'start':false,

@@ -111,7 +111,6 @@ filterOutStatus(toSort:any,name:string,isCar:boolean){
    */
   generalFilter(toSort:any,name:string,value:string,depth:number){
     let sorted= [];
-    console.log ('from filter ', toSort)
     if(depth==1){
        sorted = toSort.filter(function (el){
         return el[name.split('.')[0]][name.split('.')[1]].toLowerCase()===value;
@@ -143,6 +142,7 @@ filterOutStatus(toSort:any,name:string,isCar:boolean){
         return tab[item];
       }
     }
+
   }
 
 

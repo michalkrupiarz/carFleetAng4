@@ -4,11 +4,116 @@
       <thead>
         <tr>
           <th>Id.</th>
-          <th>Car Name</th>
-          <th>Car Registration</th>
-          <th>Type</th>
-          <th>Change Date</th>
-          <th>Status</th>
+          <th>Car Name
+            <span *ngIf = "!names['mark']; else sortedMark">
+              <span (click) = "sortItems(
+              allTires,
+              'Alpha',
+              false,
+              'mark',
+              'car.carName'
+              )"
+              class="fa fa-sort-alpha-asc"></span>
+            </span>
+
+            <ng-template #sortedMark>
+              <span class="fa fa-sort-alpha-desc"
+              (click)="sortItems(
+              allTires,
+              'rAlpha',
+              false,
+              'mark',
+              'car.carName'
+              )"></span>
+            </ng-template>
+          </th>
+          <th>Car Registration
+            <span *ngIf = "!names['registration']; else sortedReg">
+              <span (click) = "sortItems(
+              allTires,
+              'Alpha',
+              false,
+              'registration',
+              'car.carRegistration'
+              )"
+              class="fa fa-sort-alpha-asc"></span>
+            </span>
+
+            <ng-template #sortedReg>
+              <span class="fa fa-sort-alpha-desc"
+              (click)="sortItems(
+              allTires,
+              'rAlpha',
+              false,
+              'registration',
+              'car.carRegistration'
+              )"></span>
+            </ng-template>
+          </th>
+          <th>Type
+            <span *ngIf = "!names['winter']&&!names['summer']">
+              <span
+              (click)="filterItems(allTires,'winter','type','zimowe',0)"
+              class="fa fa-snowflake-o"></span>
+            </span>
+            <span
+            *ngIf = "!names['summer']&&!names['winter']"
+            (click)="filterItems(allTires,'summer','type','letnie',0)">
+            <span
+            class="fa fa-sun-o"></span>
+          </span>
+          <span *ngIf="names['winter']&&!names['summer']">
+            <span class="fa fa-sun-o"
+              (click) = "switchFiltering('summer','type','letnie',0,'winter')">
+            </span>
+            <span class="fa fa-times-circle-o"
+            (click)="clearSorting('winter')"></span>
+          </span>
+          <span *ngIf="!names['winter']&&names['summer']">
+            <span class="fa fa-snowflake-o"
+              (click) = "switchFiltering('winter','type','zimowe',0,'summer')">
+            </span>
+            <span class="fa fa-times-circle-o"
+            (click)="clearSorting('summer')"></span>
+        </span>
+          </th>
+          <th>Change Date
+            <span *ngIf = "!names['changeDate']; else sortedDate">
+              <span (click) = "sortItems(
+              allTires,
+              'dateAsc',
+              false,
+              'changeDate',
+              'changeDate'
+              )"
+              class="fa fa-sort-amount-asc"></span>
+            </span>
+
+            <ng-template #sortedDate>
+              <span class="fa fa-sort-amount-desc"
+              (click)="sortItems(
+              allTires,
+              'dateDesc',
+              false,
+              'changeDate',
+              'changeDate'
+              )"></span>
+            </ng-template>
+          </th>
+          <th>Status
+            <span *ngIf = "!names['status'];else filteredStatus"
+            class = "fa fa-wrench"
+            (click) = "filterItems(
+            allTires,
+            'status',
+            'status.progress',
+            'in status',
+            1
+            )"></span>
+            <ng-template #filteredStatus><span
+            class="fa fa-times-circle-o"
+            (click)="clearSorting('status')"></span></ng-template>
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -21,8 +126,8 @@
             <td>
               {{t.id}}
             </td>
-            <td>{{t.car.carRegistration}}</td>
             <td>{{t.car.carName}}</td>
+            <td>{{t.car.carRegistration}}</td>
             <td>
               {{t.type}}
             </td>

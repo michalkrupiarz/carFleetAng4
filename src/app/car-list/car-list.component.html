@@ -67,30 +67,31 @@
       </ng-template>
     </th>
     <th width="15%">Lends
-      <span *ngIf = "!names['lendsOut']"
-      (click) = "filterFunction(
-      wholeCarsList,
-      'lendsOut',
-      'lends.status.progress',
-      'in status',
-      '2'
-      )"
-      class="fa fa-road" style = "color : blue">
+      <span *ngIf = "!names['lendsOut']&&!names['lendsIn']">
+        <span
+        (click)="filterFunction(wholeCarsList,'lendsOut','lends.status.progress','done',2)"
+        class="fa fa-home"></span>
+      </span>
+      <span
+      *ngIf = "!names['lendsIn']&&!names['lendsOut']"
+      (click)="filterFunction(wholeCarsList,'lendsIn','lends.status.progress','in status',2)">
+      <span
+      class="fa fa-road"></span>
     </span>
-      <span *ngIf = "!names['lendsOut']"
-      (click) = "filterFunction(
-      wholeCarsList,
-      'lendsOut',
-      'lends.status.progress',
-      'done',
-      '2'
-      )"
-      class = "fa fa-home" style= "color : green">
+    <span *ngIf="names['lendsOut']&&!names['lendsIn']">
+      <span class="fa fa-road"
+        (click) = "switchFiltering('lendsIn','lends.status.progress','in status',2,'lendsOut')">
+      </span>
+      <span class="fa fa-times-circle-o"
+      (click)="clearSorting('lendsOut')"></span>
     </span>
-    <span *ngIf="names['lendsOut']">
-      <span class = "fa fa-times-circle-o" style = "color : red"
-      (click) = "clearSorting('lendsOut')"></span>
-    </span>
+    <span *ngIf="!names['lendsOut']&&names['lendsIn']">
+      <span class="fa fa-home"
+        (click) = "switchFiltering('lendsOut','lends.status.progress','done',2,'lendsIn')">
+      </span>
+      <span class="fa fa-times-circle-o"
+      (click)="clearSorting('lendsIn')"></span>
+  </span>
 
     </th>
     <th width="10%">Checkouts

@@ -98,4 +98,13 @@ export class CarListComponent implements OnInit {
     });
   }
 
+  switchFiltering(namesKey:string,fieldName:string,fieldValue:string,depth:number,switching:string){
+    this.names[switching]=!this.names[switching];
+    let cars:Car[];
+    this.cS.getAllCars().subscribe((source)=>{
+      cars=source;
+        this.filterFunction(cars,namesKey,fieldName,fieldValue,depth);
+    })
+  }
+
 }

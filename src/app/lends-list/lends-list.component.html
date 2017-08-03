@@ -38,14 +38,15 @@
         </span>
 
         <ng-template #sortedName>
-          <span class="fa fa-sort-alpha-desc"
-          (click)="oneFunction(
+          <span
+          (click) = "oneFunction(
           allLends,
           'rAlpha',
           false,
           'name',
           'car.carName'
-          )"></span>
+          )"
+          class="fa fa-sort-alpha-desc"></span>
         </ng-template>
       </th>
 
@@ -94,7 +95,20 @@
       </th>
 
       <th>Person</th>
-      <th>Status</th>
+      <th>Status
+        <span *ngIf = "!obj['status'];else filteredStatus"
+        class = "fa fa-wrench"
+        (click) = "filterItems(
+        allLends,
+        'status',
+        'status.progress',
+        'in status',
+        1
+        )"></span>
+        <ng-template #filteredStatus><span
+        class="fa fa-times-circle-o"
+        (click)="clearSorting('status')"></span></ng-template>
+      </th>
     </tr>
 
   </thead>

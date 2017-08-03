@@ -41,6 +41,7 @@ export class SortingService {
 
   sortInReversedAlphabeticalOrder(unsortedList: any, name:string, isCar:boolean){
     let toSort = unsortedList.slice(0);
+    console.log('this is unsorted list',unsortedList);
     if(isCar){
       toSort.sort(function(a,b)
       {
@@ -62,6 +63,7 @@ export class SortingService {
 
   sortDatesFromAsc(toSort:any,name:string,isCar:boolean){
     let sorted = toSort.slice(0);
+    console.log('from asc',toSort)
     sorted.sort(function (a,b){
       var x = a[name];
       var y = b[name];
@@ -71,6 +73,7 @@ export class SortingService {
   }
   sortDatesFromDesc(toSort:any,name:string,isCar:boolean){
     let sorted = toSort.slice(0);
+    console.log('from desc',toSort)
     sorted.sort(function (a,b){
       var x = a[name];
       var y = b[name];
@@ -108,7 +111,7 @@ filterOutStatus(toSort:any,name:string,isCar:boolean){
    */
   generalFilter(toSort:any,name:string,value:string,depth:number){
     let sorted= [];
-
+    console.log ('from filter ', toSort)
     if(depth==1){
        sorted = toSort.filter(function (el){
         return el[name.split('.')[0]][name.split('.')[1]].toLowerCase()===value;

@@ -32,7 +32,7 @@
               <span id = "ins_mark_sorted"
               class="fa fa-sort-alpha-desc"
               (click) = "sortFunction(allCheckouts,
-              'rAlpha',false,'mark','car.CarName')"></span>
+              'rAlpha',false,'mark','car.carName')"></span>
             </ng-template>
           </th>
           <th>Date From
@@ -42,7 +42,7 @@
               'dateAsc',
               false,
               'start',
-              'dateStart'
+              'dateFrom'
               )"
               class="fa fa-sort-amount-asc"></span>
             </span>
@@ -54,7 +54,7 @@
               'dateDesc',
               false,
               'start',
-              'dateStart'
+              'dateFrom'
               )"></span>
             </ng-template>
           </th>
@@ -65,7 +65,7 @@
               'dateAsc',
               false,
               'end',
-              'dateEnd'
+              'dateTo'
               )"
               class="fa fa-sort-amount-asc"></span>
             </span>
@@ -77,7 +77,7 @@
               'dateDesc',
               false,
               'end',
-              'dateEnd'
+              'dateTo'
               )"></span>
             </ng-template>
           </th>
@@ -87,7 +87,7 @@
             <span *ngIf = "!names['status'];else filteredStatus"
             class = "fa fa-wrench"
             (click) = "filterFunction(
-            allInsurances,
+            allCheckouts,
             'status',
             'status.progress',
             'in status',

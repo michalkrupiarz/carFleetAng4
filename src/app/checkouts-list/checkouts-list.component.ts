@@ -23,6 +23,7 @@ export class CheckoutsListComponent implements OnInit {
     }
   ngOnInit() {
     this.getAllCheckouts();
+      console.log('these are checkouts ',this.allCheckouts);
   }
 
   getAllCheckouts(){

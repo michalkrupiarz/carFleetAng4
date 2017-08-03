@@ -19,7 +19,8 @@ export class LendsListComponent implements OnInit {
   private obj = {'reg':false,
                 'name':false,
                 'end':false,
-                'start':false};
+                'start':false,
+              'status':false};
 
   ngOnInit() {
     this.getAllLends();
@@ -30,12 +31,19 @@ export class LendsListComponent implements OnInit {
     this.allLends = this.sS.generalSortFunct(lends,action,fieldName,isCar);
   }
 
+  filterItems(lends:Lend[],namesKey:string,fieldName:string,fieldValue:string,depth:number){
+    this.obj[namesKey] = !this.obj[namesKey];
+      this.allLends= this.sS.generalFilter(lends,fieldName,fieldValue,depth);
+
+  }
+
   getAllLends(){
     this.lS.getAllLends().subscribe((source)=>{
       this.allLends = source;
     })
   }
-  cleanSorting(){
+  clearSorting(namesKey:string){
+    this.obj[namesKey] = !this.obj[namesKey];
     this.getAllLends();
   }
 

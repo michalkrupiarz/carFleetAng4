@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule} from '@angular/http';
 import { Car} from './car.model';
-
+import {RouterModule,Routes} from '@angular/router';
 import { AppComponent } from './app.component';
 import { CarComponent } from './car/car.component';
 import { DataService} from './data.service';
@@ -32,8 +32,16 @@ import { SortingService } from './usableServices/sorting.service';
 import { DocumentComponent } from './document/document.component';
 import { DocumentListComponent } from './document-list/document-list.component';
 import {DocumentService} from './document/document.service';
+import { AddCarComponent } from './add-car/add-car.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { BsDropdownModule } from 'ngx-bootstrap';
 
-
+const routes:Routes=[
+    {path: '', redirectTo: 'start', pathMatch:'full'},
+    {path: 'start', component:DashboardComponent},
+    {path: 'addCar',component:AddCarComponent},
+    {path: '**', component:DashboardComponent}
+];
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,14 +60,18 @@ import {DocumentService} from './document/document.service';
     InsuranceComponent,
     InsurancesListComponent,
     DocumentComponent,
-    DocumentListComponent
+    DocumentListComponent,
+    AddCarComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
     CollapseModule.forRoot(),
     AccordionModule.forRoot(),
-    TabsModule.forRoot()
+    TabsModule.forRoot(),
+    BsDropdownModule.forRoot(),
+    RouterModule.forRoot(routes)
   ],
   providers: [DataService,
     CarService,
@@ -72,4 +84,8 @@ import {DocumentService} from './document/document.service';
     DocumentService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+
+
+export class AppModule {
+
+}

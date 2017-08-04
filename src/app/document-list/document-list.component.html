@@ -4,11 +4,52 @@
       <thead>
         <tr>
           <th>Id.</th>
-          <th>Car Name</th>
-          <th>Car Registration</th>
-          <th>Expiration Date</th>
+          <th>Car Name
+            <span *ngIf = "!names['name']; else sortedName"
+            class= "fa fa-sort-alpha-asc"
+            (click) = "sortItems(allDocuments,'Alpha',false,'name','car.carName')">
+          </span>
+          <ng-template #sortedName>
+            <span class="fa fa-sort-alpha-desc"
+            (click) = "sortItems(allDocuments,'rAlpha',false,'name','car.carName')">
+          </span>
+          </ng-template>
+          </th>
+          <th>Car Registration
+            <span *ngIf = "!names['registration']; else sortedReg"
+            class="fa fa-sort-alpha-asc"
+            (click) = "sortItems(allDocuments,'Alpha',false,'registration','car.carRegistration')">
+          </span>
+          <ng-template #sortedReg>
+            <span class="fa fa-sort-alpha-desc"
+            (click) = "sortItems(allDocuments,'rAlpha',false,'registration','car.carRegistration')">
+          </span>
+          </ng-template>
+          </th>
+          <th>Expiration Date
+            <span *ngIf = "!names['expDate']; else sortedDate"
+            class = "fa fa-sort-amount-asc"
+            (click) = "sortItems(allDocuments,'dateAsc',false,'expDate','expirationDate')"></span>
+            <ng-template #sortedDate>
+              <span class="fa fa-sort-amount-desc"
+              (click)="sortItems(allDocuments,'dateDesc',false,'expDate','expirationDate')"></span>
+            </ng-template>
+          </th>
           <th>Type</th>
-          <th>Status</th>
+          <th>Status
+            <span *ngIf = "!names['status'];else filteredStatus"
+            class = "fa fa-wrench"
+            (click) = "filterItems(
+            allDocuments,
+            'status',
+            'status.progress',
+            'in status',
+            1
+            )"></span>
+            <ng-template #filteredStatus><span
+            class="fa fa-times-circle-o"
+            (click)="clearSorting('status')"></span></ng-template>
+          </th>
         </tr>
       </thead>
       <tbody>

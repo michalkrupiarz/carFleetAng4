@@ -47,12 +47,10 @@ export class TireListComponent implements OnInit {
 
   switchFiltering(namesKey:string,fieldName:string,fieldValue:string,depth:number,switching:string){
     this.names[switching]=!this.names[switching];
-    console.log(namesKey,this.names[namesKey],switching,this.names[switching]);
     let tires:Tire[];
     this.tS.getAllTires().subscribe((source)=>{
       tires=source;
         this.filterItems(tires,namesKey,fieldName,fieldValue,depth);
-        console.log(namesKey,this.names[namesKey],switching,this.names[switching]);
     })
 
   }

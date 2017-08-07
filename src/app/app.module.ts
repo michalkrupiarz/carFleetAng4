@@ -35,12 +35,15 @@ import {DocumentService} from './document/document.service';
 import { AddCarComponent } from './add-car/add-car.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { BsDropdownModule } from 'ngx-bootstrap';
+import { AddRepairComponent } from './add-repair/add-repair.component';
 
 const routes:Routes=[
     {path: '', redirectTo: 'start', pathMatch:'full'},
     {path: 'start', component:DashboardComponent},
     {path: 'addCar',component:AddCarComponent},
+    {path: 'addRepair',component: AddRepairComponent},
     {path: '**', component:DashboardComponent}
+
 ];
 @NgModule({
   declarations: [
@@ -62,7 +65,8 @@ const routes:Routes=[
     DocumentComponent,
     DocumentListComponent,
     AddCarComponent,
-    NavbarComponent
+    NavbarComponent,
+    AddRepairComponent
   ],
   imports: [
     BrowserModule,

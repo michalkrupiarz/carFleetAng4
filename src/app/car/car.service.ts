@@ -21,6 +21,8 @@ export class CarService {
   private getAllCarsCheckoutsUrl = this.sortCarsByUrl+'checkouts';
   private getAllCarsInsurancesUrl=this.sortCarsByUrl+'insurances';
 
+  private postNewCarUrl = 'addCar';
+
   getAllCars(){
   return this.ds.getData(this.getAllCarsUrl);
   }
@@ -47,5 +49,9 @@ export class CarService {
   }
   getAllCarsInsurances(){
     return this.ds.getData(this.getAllCarsInsurancesUrl);
+  }
+  postNewCar(body:any){
+    console.log(body);
+    return this.ds.postData(this.postNewCarUrl,body);
   }
 }

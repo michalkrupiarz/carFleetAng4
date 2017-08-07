@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import {CarService} from '../car/car.service';
 @Component({
   selector: 'app-add-car',
   templateUrl: './add-car.component.html',
@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddCarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private cS:CarService) { }
 
   ngOnInit() {
+  }
+
+  addCar(cName:string,cReg:string){
+    const body = {carName:cName,carRegistration:cReg};
+    this.cS.postNewCar(body); 
+    console.log (cName,cReg);
   }
 
 }

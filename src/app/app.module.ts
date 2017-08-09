@@ -36,6 +36,11 @@ import { AddCarComponent } from './add-car/add-car.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { BsDropdownModule } from 'ngx-bootstrap';
 import { AddRepairComponent } from './add-repair/add-repair.component';
+import { DatepickerModule } from 'ngx-bootstrap';
+import { ModalModule } from 'ngx-bootstrap';
+import { FormsModule } from '@angular/forms';
+import { DateModalComponent } from './date-modal/date-modal.component';
+import {StatusService} from './usableServices/status.service';
 
 const routes:Routes=[
     {path: '', redirectTo: 'start', pathMatch:'full'},
@@ -66,7 +71,8 @@ const routes:Routes=[
     DocumentListComponent,
     AddCarComponent,
     NavbarComponent,
-    AddRepairComponent
+    AddRepairComponent,
+    DateModalComponent
   ],
   imports: [
     BrowserModule,
@@ -75,7 +81,10 @@ const routes:Routes=[
     AccordionModule.forRoot(),
     TabsModule.forRoot(),
     BsDropdownModule.forRoot(),
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    DatepickerModule.forRoot(),
+    ModalModule.forRoot(),
+      FormsModule
   ],
   providers: [DataService,
     CarService,
@@ -85,7 +94,8 @@ const routes:Routes=[
     InsuranceService,
     TireServiceService,
     SortingService,
-    DocumentService],
+    DocumentService,
+    StatusService],
   bootstrap: [AppComponent]
 })
 

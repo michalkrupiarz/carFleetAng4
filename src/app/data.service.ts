@@ -13,7 +13,7 @@ export class DataService {
     return this.http.get(this.baseUrl+url).map(r=>r.json());
   }
   postData(url:string,body:string){
-    console.log(body);
+    console.log('from data service',body);
     let headers = new Headers({ 'Content-Type': 'application/json' });
     return this.http.post(this.baseUrl+url,body,headers).subscribe();
   }

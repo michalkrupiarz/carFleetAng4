@@ -5,6 +5,7 @@ import 'rxjs/add/operator/map';
 import {DataService} from '../data.service';
 import {Car} from '../car.model';
 
+
 @Injectable()
 export class CarService {
 
@@ -51,7 +52,6 @@ export class CarService {
     return this.ds.getData(this.getAllCarsInsurancesUrl);
   }
   postNewCar(body:any){
-    console.log(body);
     return this.ds.postData(this.postNewCarUrl,body);
   }
 }

@@ -41,12 +41,14 @@ import { ModalModule } from 'ngx-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { DateModalComponent } from './date-modal/date-modal.component';
 import {StatusService} from './usableServices/status.service';
+import { AddLendsComponent } from './add-lends/add-lends.component';
 
 const routes:Routes=[
     {path: '', redirectTo: 'start', pathMatch:'full'},
     {path: 'start', component:DashboardComponent},
     {path: 'addCar',component:AddCarComponent},
     {path: 'addRepair',component: AddRepairComponent},
+    {path: 'addLend',component: AddLendsComponent},
     {path: '**', component:DashboardComponent}
 
 ];
@@ -72,7 +74,8 @@ const routes:Routes=[
     AddCarComponent,
     NavbarComponent,
     AddRepairComponent,
-    DateModalComponent
+    DateModalComponent,
+    AddLendsComponent
   ],
   imports: [
     BrowserModule,

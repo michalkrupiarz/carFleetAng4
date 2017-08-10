@@ -7,8 +7,13 @@ export class CheckoutService {
 
   constructor(private dS: DataService) { }
   private getAllCheckoutsUrl = 'getAllCheckouts';
+  private postNewCheckoutUrl='addCheckout';
 
   getAllCheckouts(){
     return this.dS.getData(this.getAllCheckoutsUrl);
+  }
+
+  potNewCheckout(body:any){
+    return this.dS.postData(this.postNewCheckoutUrl,body);
   }
 }

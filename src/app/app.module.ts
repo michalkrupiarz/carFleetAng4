@@ -42,6 +42,7 @@ import { FormsModule } from '@angular/forms';
 import { DateModalComponent } from './date-modal/date-modal.component';
 import {StatusService} from './usableServices/status.service';
 import { AddLendsComponent } from './add-lends/add-lends.component';
+import { AddCheckoutComponent } from './add-checkout/add-checkout.component';
 
 const routes:Routes=[
     {path: '', redirectTo: 'start', pathMatch:'full'},
@@ -49,6 +50,7 @@ const routes:Routes=[
     {path: 'addCar',component:AddCarComponent},
     {path: 'addRepair',component: AddRepairComponent},
     {path: 'addLend',component: AddLendsComponent},
+    {path: 'addCheckout',component: AddCheckoutComponent},
     {path: '**', component:DashboardComponent}
 
 ];
@@ -75,7 +77,8 @@ const routes:Routes=[
     NavbarComponent,
     AddRepairComponent,
     DateModalComponent,
-    AddLendsComponent
+    AddLendsComponent,
+    AddCheckoutComponent
   ],
   imports: [
     BrowserModule,

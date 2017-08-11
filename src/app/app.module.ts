@@ -2,11 +2,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule} from '@angular/http';
 import { Car} from './car.model';
-import {RouterModule,Routes} from '@angular/router';
+import { RouterModule,Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { CarComponent } from './car/car.component';
 import { DataService} from './data.service';
-import {CarService} from './car/car.service';
+import { CarService } from './car/car.service';
 import { CarListComponent } from './car-list/car-list.component';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
@@ -31,7 +31,7 @@ import { TireServiceService} from './tire/tire.service';
 import { SortingService } from './usableServices/sorting.service';
 import { DocumentComponent } from './document/document.component';
 import { DocumentListComponent } from './document-list/document-list.component';
-import {DocumentService} from './document/document.service';
+import { DocumentService } from './document/document.service';
 import { AddCarComponent } from './add-car/add-car.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { BsDropdownModule } from 'ngx-bootstrap';
@@ -40,9 +40,10 @@ import { DatepickerModule } from 'ngx-bootstrap';
 import { ModalModule } from 'ngx-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { DateModalComponent } from './date-modal/date-modal.component';
-import {StatusService} from './usableServices/status.service';
+import { StatusService } from './usableServices/status.service';
 import { AddLendsComponent } from './add-lends/add-lends.component';
 import { AddCheckoutComponent } from './add-checkout/add-checkout.component';
+import { AddInsuranceComponent } from './add-insurance/add-insurance.component';
 
 const routes:Routes=[
     {path: '', redirectTo: 'start', pathMatch:'full'},
@@ -51,6 +52,7 @@ const routes:Routes=[
     {path: 'addRepair',component: AddRepairComponent},
     {path: 'addLend',component: AddLendsComponent},
     {path: 'addCheckout',component: AddCheckoutComponent},
+    {path: 'addInsurance', component :AddInsuranceComponent},
     {path: '**', component:DashboardComponent}
 
 ];
@@ -78,7 +80,8 @@ const routes:Routes=[
     AddRepairComponent,
     DateModalComponent,
     AddLendsComponent,
-    AddCheckoutComponent
+    AddCheckoutComponent,
+    AddInsuranceComponent
   ],
   imports: [
     BrowserModule,

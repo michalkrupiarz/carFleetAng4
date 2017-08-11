@@ -23,7 +23,7 @@
 
       </div>
       <div class="col-lg-4">
-        <input class= "form-control" #DateInsFrom value="{{dateFrom | date:'yyyy-MM-dd'}}" required> <span class="fa fa-calendar" (click)="openModal(DateFrom)"></span>
+        <input class= "form-control" #DateFrom value="{{dateFrom | date:'yyyy-MM-dd'}}" required> <span class="fa fa-calendar" (click)="openModal(DateFrom)"></span>
       </div>
 
       <div class="col-lg-4">
@@ -36,7 +36,7 @@
             <b>Date To</b>
         </div>
         <div class="col-lg-4">
-           <input #DateInsTo class="form-control" value="{{dateTo | date:'yyyy-MM-dd'}}" required> <span class="fa fa-calendar" (click)="openModal(DateTo)"></span>
+           <input #DateTo class="form-control" value="{{dateTo | date:'yyyy-MM-dd'}}" required> <span class="fa fa-calendar" (click)="openModal(DateTo)"></span>
         </div>
 
         <div class="col-lg-4">
@@ -86,7 +86,7 @@
     </div>
       <hr />
   </div>
-  <button type = "submit" class="btn-primary"  (click)="addCheckout(selectedCar, DateInsFrom.value, DateInsTo.value, note.value, selectedStatus,cost.value)" >Add Lend</button>
+  <button type = "submit" class="btn-primary"  (click)="addCheckout(selectedCar, DateFrom.value, DateTo.value, note.value, selectedStatus,cost.value)" >Add Checkout</button>
 </form>
 <hr />
 

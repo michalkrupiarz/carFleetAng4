@@ -4,7 +4,7 @@
       <thead>
         <tr>
           <th>Id.</th>
-          <th>Car Name
+          <th>Car Registration
             <span id = "ins_mark_sort" *ngIf="!names['mark']; else markSorted"
             class ="fa fa-sort-alpha-asc"
             (click)="sortFunction(allInsurances,
@@ -16,24 +16,8 @@
                     'rAlpha',false,'mark','car.carName')"></span>
             </ng-template>
           </th>
-          <th>Car Registration
-            <span *ngIf = "!names['reg']; else sortedRegistration">
-              <span (click) = "sortFunction(
-              allInsurances,
-              'Alpha',
-              false,
-              'reg',
-              'car.carRegistration'
-              )"
-              class="fa fa-sort-alpha-asc"></span>
-            </span>
+          <th>Note
 
-            <ng-template #sortedRegistration>
-              <span class="fa fa-sort-alpha-desc"
-              (click)="sortFunction(allInsurances,
-              'rAlpha',false,'reg','car.carRegistration'
-              )"></span>
-            </ng-template>
           </th>
           <th>Date Start
             <span *ngIf = "!names['start']; else sortedStart">
@@ -134,7 +118,7 @@
               {{i.id}}
             </td>
             <td>{{i.car.carRegistration}}</td>
-            <td>{{i.car.carName}}</td>
+            <td>{{i.note}}</td>
             <td>{{i.dateStart | date:'yyyy-MM-dd'}}
             </td>
             <td>{{i.dateEnd| date:'yyyy-MM-dd'}}

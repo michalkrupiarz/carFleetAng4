@@ -69,7 +69,9 @@ export class AddCheckoutComponent implements OnInit {
  public addCheckout(car:Car, dateFrom:Date, dateTo:Date, note:string,st:Status,cost:number){
    const body = {car:car,dateFrom:dateFrom,dateTo:dateTo,note:note,status:st,cost:cost};
    console.log(body);
-   this.report = this.checkS.potNewCheckout(body);
+    this.checkS.potNewCheckout(body).subscribe((s)=>{
+      console.log('s from checkouts',s);
+    });
    console.log("report from adding chekc",this.report);
  }
 }

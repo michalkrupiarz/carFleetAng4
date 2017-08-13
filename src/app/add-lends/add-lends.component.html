@@ -19,24 +19,11 @@
     <hr />
     <div class="row">
       <div class="col-lg-2">
-          <b>Repair Start</b>
+          <b>Lend Start</b>
 
       </div>
       <div class="col-lg-4">
-        <input class= "form-control" #startRep value="{{startDate | date:'yyyy-MM-dd'}}" required> <span class="fa fa-calendar" (click)="openModal(newRepairStart)"></span>
-      </div>
-
-      <div class="col-lg-4">
-
-      </div>
-    </div>
-      <hr />
-    <div class="row">
-      <div class="col-lg-2">
-          <b>Repair End</b>
-      </div>
-      <div class="col-lg-4">
-        <input #endRep class="form-control" value="{{endDate | date:'yyyy-MM-dd'}}" required> <span class="fa fa-calendar" (click)="openModal(newRepairEnd)"></span>
+        <input class= "form-control" #startLend value="{{startDate | date:'yyyy-MM-dd'}}" required> <span class="fa fa-calendar" (click)="openModal(newLendStart)"></span>
       </div>
 
       <div class="col-lg-4">
@@ -46,10 +33,23 @@
       <hr />
     <div class="row">
       <div class="col-lg-2">
-          <b>Repair Cost</b>
+          <b>Lend End</b>
       </div>
       <div class="col-lg-4">
-        <input #costRep class="form-control" required/>
+        <input #endLend class="form-control" value="{{endDate | date:'yyyy-MM-dd'}}" required> <span class="fa fa-calendar" (click)="openModal(newLendEnd)"></span>
+      </div>
+
+      <div class="col-lg-4">
+
+      </div>
+    </div>
+      <hr />
+    <div class="row">
+      <div class="col-lg-2">
+          <b>Person</b>
+      </div>
+      <div class="col-lg-4">
+        <input #person class="form-control" required/>
       </div>
 
       <div class="col-lg-4">
@@ -73,7 +73,7 @@
     </div>
       <hr />
   </div>
-  <button type = "submit" class="btn-primary"   (click)="addRepair(selectedCar, startRep.value, endRep.value, costRep.value, selectedStatus)">Add Repair</button>
+  <button type = "submit" class="btn-primary"   (click)="addLend(selectedCar, startLend.value, endLend.value, person.value, selectedStatus)">Add Lend</button>
 </form>
 <hr />
 
@@ -81,7 +81,7 @@
 <div>
 
 
-<ng-template #newRepairStart>
+<ng-template #newLendStart>
   <div class="modal-header">
     <h4 class="modal-title pull-left">Modal</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
@@ -96,7 +96,7 @@
     </div>
   </div>
 </ng-template>
-<ng-template #newRepairEnd>
+<ng-template #newLendEnd>
   <div class="modal-header">
     <h4 class="modal-title pull-left">Modal</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">

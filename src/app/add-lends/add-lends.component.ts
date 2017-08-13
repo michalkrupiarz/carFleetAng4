@@ -6,29 +6,31 @@ import { DatepickerModule } from 'ngx-bootstrap';
   import { FormsModule } from '@angular/forms';
   import {CarService} from '../car/car.service';
   import {Car} from '../car.model';
-  import {RepairService} from '../repair/repair.service';
+  import {LendServiceService} from '../lend/lend-service.service';
   import {StatusService} from '../usableServices/status.service';
   import {Status} from '../status.model';
 
 @Component({
-  selector: 'app-add-repair',
-  templateUrl: './add-repair.component.html',
-  styleUrls: ['./add-repair.component.css']
+  selector: 'app-add-lends',
+  templateUrl: './add-lends.component.html',
+  styleUrls: ['./add-lends.component.css']
 })
-export class AddRepairComponent implements OnInit {
+export class AddLendsComponent implements OnInit {
+
   private statuses:Status[];
   private cars: Car[];
   public addEndDate : Date;
   public startDate: Date;
   public endDate : Date;
   private dt:Date;
+  public modalRef: BsModalRef;
   public config = {
    ignoreBackdropClick: true
  };
-  public modalRef: BsModalRef;
+
   constructor(private modalService: BsModalService,
     private cS:CarService,
-    private rS:RepairService,
+    private lS:LendServiceService,
     private sS:StatusService) { }
 
   ngOnInit() {
@@ -44,35 +46,35 @@ export class AddRepairComponent implements OnInit {
   public openModal(template: TemplateRef<any>) {
    this.modalRef = this.modalService.show(template,this.config);
  }
+ public getStartDate():Date{
+   return this.startDate;
+ }
 
-  public getStartDate():Date{
-    return this.startDate;
-  }
+ public getEndDate():Date{
+   return this.endDate;
+ }
 
-  public getEndDate():Date{
-    return this.endDate;
-  }
+ public sendDateStart(){
+   this.addEndDate = this.getStartDate();
+   this.modalRef.hide();
+ }
 
-  public sendDateStart(){
-    this.addEndDate = this.getStartDate();
-    this.modalRef.hide();
-  }
+ public sendDateEnd(){
+   this.getEndDate();
+   this.modalRef.hide();
+ }
 
-  public sendDateEnd(){
-    this.getEndDate();
-    this.modalRef.hide();
-  }
-  public addRepair(car:Car, dStart:Date, dEnd:Date, cost:number,st:Status){
-    const body = {car:car,dateStart:dStart,dateEnd:dEnd,cost:cost,status:st};
-    console.log(body);
-    this.rS.postNewRepair(body).subscribe((s)=>{
-      console.log (s);
-    });
-  }
-  public getAllCars(){
-    this.cS.getAllCars().subscribe((source)=>{
-      this.cars = source;
-    })
-  }
+ public addLend(car:Car, dStart:Date, dEnd:Date, person:string,st:Status){
+   const body = {car:car,lendStart:dStart,lendEnd:dEnd,person:person,status:st};
+   console.log(body);
+   this.lS.postNewLend(body).subscribe((s)=>{
+     console.log(s);
+   });
+ }
+ public getAllCars(){
+   this.cS.getAllCars().subscribe((source)=>{
+     this.cars = source;
+   })
+ }
 
 }

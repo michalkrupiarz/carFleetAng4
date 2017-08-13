@@ -15,6 +15,6 @@ export class DataService {
   postData(url:string,body:string){
     console.log('from data service',body);
     let headers = new Headers({ 'Content-Type': 'application/json' });
-    return this.http.post(this.baseUrl+url,body,headers).subscribe();
+    return this.http.post(this.baseUrl+url,body,headers);
   }
 }

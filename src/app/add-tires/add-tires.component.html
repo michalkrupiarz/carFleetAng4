@@ -1,0 +1,94 @@
+<div style="background-color:lightgray">
+  <b>Navigation:</b> | <a  [routerLink]="['/start']">Dashboard</a>
+</div>
+<form>
+  <div class="well">
+    <div class="row">
+      <div class="col-lg-2">
+        <b>Car Registration</b>
+      </div>
+      <div class="col-lg-4">
+        <select name="cars" class="form-control" #car [(ngModel)]="selectedCar">
+          <option *ngFor="let car of cars " [ngValue]="car">{{car.carRegistration}}</option>
+        </select>
+      </div>
+      <div class="col-lg-4">
+
+      </div>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="col-lg-2">
+          <b>Change Date</b>
+
+      </div>
+      <div class="col-lg-4">
+        <input class= "form-control" #change value="{{changeDate | date:'yyyy-MM-dd'}}" required> <span class="fa fa-calendar" (click)="openModal(changeDateModal)"></span>
+      </div>
+
+      <div class="col-lg-4">
+
+      </div>
+    </div>
+      <hr />
+
+    <div class="row">
+      <div class="col-lg-2">
+          <b>Type</b>
+      </div>
+      <div class="col-lg-4">
+        <select name = "tireType" class = "form-control" #tireType>
+          <option>
+            Letnie
+          </option>
+          <option>
+            Zimowe
+          </option>
+        </select>
+      </div>
+
+      <div class="col-lg-4">
+
+      </div>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="col-lg-2">
+          <b>Status</b>
+      </div>
+      <div class="col-lg-4">
+        <select name="status" class="form-control" #statsus [(ngModel)]="selectedStatus">
+          <option *ngFor="let status of statuses " [ngValue]="status">{{status.progress}}</option>
+        </select>
+      </div>
+
+      <div class="col-lg-4">
+
+      </div>
+    </div>
+      <hr />
+  </div>
+  <button type = "submit" class="btn-primary"   (click)="addTires(selectedCar,change.value,tireType.value,selectedStatus)">Add Tires</button>
+</form>
+<hr />
+
+<br /><br />
+<div>
+
+
+<ng-template #changeDateModal>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Modal</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div style="display:inline-block; min-height:290px;">
+      <datepicker  [(ngModel)]="changeDate"></datepicker>
+      <button type="button" (click)="sendDateChange()">OK</button>
+      <button type="button" (click)="modalRef.hide()">Cancel</button>
+    </div>
+  </div>
+</ng-template>
+</div>

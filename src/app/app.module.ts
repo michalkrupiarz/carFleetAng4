@@ -44,6 +44,7 @@ import { StatusService } from './usableServices/status.service';
 import { AddLendsComponent } from './add-lends/add-lends.component';
 import { AddCheckoutComponent } from './add-checkout/add-checkout.component';
 import { AddInsuranceComponent } from './add-insurance/add-insurance.component';
+import { AddTiresComponent } from './add-tires/add-tires.component';
 
 const routes:Routes=[
     {path: '', redirectTo: 'start', pathMatch:'full'},
@@ -53,6 +54,7 @@ const routes:Routes=[
     {path: 'addLend',component: AddLendsComponent},
     {path: 'addCheckout',component: AddCheckoutComponent},
     {path: 'addInsurance', component :AddInsuranceComponent},
+    {path: 'addTire',component:AddTiresComponent},
     {path: '**', component:DashboardComponent}
 
 ];
@@ -81,7 +83,8 @@ const routes:Routes=[
     DateModalComponent,
     AddLendsComponent,
     AddCheckoutComponent,
-    AddInsuranceComponent
+    AddInsuranceComponent,
+    AddTiresComponent
   ],
   imports: [
     BrowserModule,

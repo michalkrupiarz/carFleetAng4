@@ -65,7 +65,9 @@ export class AddRepairComponent implements OnInit {
   public addRepair(car:Car, dStart:Date, dEnd:Date, cost:number,st:Status){
     const body = {car:car,dateStart:dStart,dateEnd:dEnd,cost:cost,status:st};
     console.log(body);
-    this.rS.postNewRepair(body);
+    this.rS.postNewRepair(body).subscribe((s)=>{
+      console.log (s);
+    });
   }
   public getAllCars(){
     this.cS.getAllCars().subscribe((source)=>{

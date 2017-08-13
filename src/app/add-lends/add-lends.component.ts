@@ -67,7 +67,9 @@ export class AddLendsComponent implements OnInit {
  public addLend(car:Car, dStart:Date, dEnd:Date, person:string,st:Status){
    const body = {car:car,lendStart:dStart,lendEnd:dEnd,person:person,status:st};
    console.log(body);
-   this.lS.postNewLend(body);
+   this.lS.postNewLend(body).subscribe((s)=>{
+     console.log(s);
+   });
  }
  public getAllCars(){
    this.cS.getAllCars().subscribe((source)=>{

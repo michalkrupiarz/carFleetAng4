@@ -19,11 +19,11 @@
     <hr />
     <div class="row">
       <div class="col-lg-2">
-          <b>Date From</b>
+          <b>Date Start</b>
 
       </div>
       <div class="col-lg-4">
-        <input class= "form-control" #DateFrom value="{{dateFrom | date:'yyyy-MM-dd'}}" required> <span class="fa fa-calendar" (click)="openModal(DateFrom)"></span>
+        <input class= "form-control" #dStart value="{{dateStart | date:'yyyy-MM-dd'}}" required> <span class="fa fa-calendar" (click)="openModal(DateStart)"></span>
       </div>
 
       <div class="col-lg-4">
@@ -33,10 +33,10 @@
       <hr />
       <div class="row">
         <div class="col-lg-2">
-            <b>Date To</b>
+            <b>Date End</b>
         </div>
         <div class="col-lg-4">
-           <input #DateTo class="form-control" value="{{dateTo | date:'yyyy-MM-dd'}}" required> <span class="fa fa-calendar" (click)="openModal(DateTo)"></span>
+           <input #dEnd class="form-control" value="{{dateEnd | date:'yyyy-MM-dd'}}" required> <span class="fa fa-calendar" (click)="openModal(DateEnd)"></span>
         </div>
 
         <div class="col-lg-4">
@@ -44,6 +44,21 @@
         </div>
       </div>
         <hr />
+
+        <div class="row">
+          <div class="col-lg-2">
+              <b>Pay Date</b>
+          </div>
+          <div class="col-lg-4">
+             <input #dPay class="form-control" value="{{payDate | date:'yyyy-MM-dd'}}" required> <span class="fa fa-calendar" (click)="openModal(PayDate)"></span>
+          </div>
+
+          <div class="col-lg-4">
+
+          </div>
+        </div>
+          <hr />
+
     <div class="row">
       <div class="col-lg-2">
           <b>Note</b>
@@ -72,6 +87,19 @@
     <hr />
     <div class="row">
       <div class="col-lg-2">
+          <b>Ins. Company</b>
+      </div>
+      <div class="col-lg-4">
+        <input #insComp class="form-control"/>
+      </div>
+
+      <div class="col-lg-4">
+
+      </div>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="col-lg-2">
           <b>Status</b>
       </div>
       <div class="col-lg-4">
@@ -86,7 +114,7 @@
     </div>
       <hr />
   </div>
-  <button type = "submit" class="btn-primary"  (click)="addCheckout(selectedCar, DateFrom.value, DateTo.value, note.value, selectedStatus,cost.value)" >Add Checkout</button>
+  <button type = "submit" class="btn-primary"  (click)="addInsurance(selectedCar, dStart.value, dEnd.value, dPay.value,  selectedStatus,cost.value,insComp.value,note.value)" >Add Insurance</button>
 </form>
 <hr />
 
@@ -94,7 +122,7 @@
 <div>
 
 
-<ng-template #DateFrom>
+<ng-template #DateStart>
   <div class="modal-header">
     <h4 class="modal-title pull-left">Modal</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
@@ -103,13 +131,13 @@
   </div>
   <div class="modal-body">
     <div style="display:inline-block; min-height:290px;">
-      <datepicker  [(ngModel)]="dateFrom"></datepicker>
-      <button type="button" (click)="sendDateFrom()">OK</button>
+      <datepicker  [(ngModel)]="dateStart"></datepicker>
+      <button type="button" (click)="sendDateStart()">OK</button>
       <button type="button" (click)="modalRef.hide()">Cancel</button>
     </div>
   </div>
 </ng-template>
-<ng-template #DateTo>
+<ng-template #DateEnd>
   <div class="modal-header">
     <h4 class="modal-title pull-left">Modal</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
@@ -118,13 +146,27 @@
   </div>
   <div class="modal-body">
     <div style="display:inline-block; min-height:290px;">
-      <datepicker  [(ngModel)]="dateTo"></datepicker>
-      <button type="button" (click)="sendDateTo()">OK</button>
+      <datepicker  [(ngModel)]="dateEnd"></datepicker>
+      <button type="button" (click)="sendDateEnd()">OK</button>
       <button type="button" (click)="modalRef.hide()">Cancel</button>
     </div>
   </div>
 </ng-template>
-
+<ng-template #PayDate>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Modal</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div style="display:inline-block; min-height:290px;">
+      <datepicker  [(ngModel)]="payDate"></datepicker>
+      <button type="button" (click)="sendPayDate()">OK</button>
+      <button type="button" (click)="modalRef.hide()">Cancel</button>
+    </div>
+  </div>
+</ng-template>
 
 
 </div>

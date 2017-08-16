@@ -4,7 +4,7 @@
       <thead>
         <tr>
           <th>Id.</th>
-          <th>Car Name
+          <th>Car Registration
             <span *ngIf = "!names['name']; else sortedName"
             class= "fa fa-sort-alpha-asc"
             (click) = "sortItems(allDocuments,'Alpha',false,'name','car.carName')">
@@ -15,7 +15,7 @@
           </span>
           </ng-template>
           </th>
-          <th>Car Registration
+          <th>Car Name
             <span *ngIf = "!names['registration']; else sortedReg"
             class="fa fa-sort-alpha-asc"
             (click) = "sortItems(allDocuments,'Alpha',false,'registration','car.carRegistration')">

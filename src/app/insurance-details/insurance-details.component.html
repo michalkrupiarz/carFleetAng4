@@ -1,0 +1,36 @@
+
+<div class="row">
+  <div class="col-lg-2">
+
+    <b>Insurances:</b>
+  </div>
+  <div class="col-lg-10">
+    <table class="table table-hover">
+      <thead>
+        <th>Id.</th>
+        <th>Date Start</th>
+        <th>Date End</th>
+        <th>Cost</th>
+        <th>Pay Date</th>
+        <th>Ins. Company </th>
+        <th>Status</th>
+      </thead>
+      <tbody>
+        <tr *ngFor = "let c of insurances">
+          <td>{{c.id}}</td>
+          <td>{{c.dateStart | date:'yyyy-MM-dd'}}</td>
+          <td>{{c.dateEnd | date:'yyyy-MM-dd '}}</td>
+          <td>{{c.cost}}</td>
+          <td>{{c.payDate | date:'yyyy-MM-dd '}}</td>
+          <td>{{c.insCompany}}</td>
+          <td>{{c.status.progress}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+
+</div>
+<hr />
+<br />

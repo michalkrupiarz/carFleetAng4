@@ -46,6 +46,12 @@ import { AddCheckoutComponent } from './add-checkout/add-checkout.component';
 import { AddInsuranceComponent } from './add-insurance/add-insurance.component';
 import { AddTiresComponent } from './add-tires/add-tires.component';
 import { AddDocumentComponent } from './add-document/add-document.component';
+import { RepairDetailsComponent } from './repair-details/repair-details.component';
+import { LendDetailsComponent } from './lend-details/lend-details.component';
+import { CheckoutDetailsComponent } from './checkout-details/checkout-details.component';
+import { InsuranceDetailsComponent } from './insurance-details/insurance-details.component';
+import { TireDetailsComponent } from './tire-details/tire-details.component';
+import { DocumentDetailsComponent } from './document-details/document-details.component';
 
 const routes:Routes=[
     {path: '', redirectTo: 'start', pathMatch:'full'},
@@ -87,7 +93,13 @@ const routes:Routes=[
     AddCheckoutComponent,
     AddInsuranceComponent,
     AddTiresComponent,
-    AddDocumentComponent
+    AddDocumentComponent,
+    RepairDetailsComponent,
+    LendDetailsComponent,
+    CheckoutDetailsComponent,
+    InsuranceDetailsComponent,
+    TireDetailsComponent,
+    DocumentDetailsComponent
   ],
   imports: [
     BrowserModule,

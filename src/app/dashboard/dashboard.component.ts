@@ -27,6 +27,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.getWholeCarsList();
     this.getPendingRepairsNumber();
+
   }
 
   getWholeCarsList(){
@@ -34,6 +35,7 @@ export class DashboardComponent implements OnInit {
       .subscribe((source)=>{
         this.cars = source;
             this.wholeCarsListLength = this.cars.length;
+            console.log(this.cars);
       });
   }
   getPendingRepairsNumber(){

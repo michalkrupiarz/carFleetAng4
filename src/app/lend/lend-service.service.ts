@@ -10,12 +10,19 @@ export class LendServiceService {
 
   private getAllLendsURL = 'getAllLends';
   private postNewLendUrl = 'addLend';
+  private getNumberOfFreeCarsUrl = 'getFreeCarsNumber';
+  private getNumberOfTakenCarsUrl = 'getTakenCarsNumber';
 
   getAllLends(){
     return this.dS.getData(this.getAllLendsURL);
   }
   postNewLend(body:any){
-    console.log('from service',body);
     return this.dS.postData(this.postNewLendUrl,body);
+  }
+  getNumberOfFreeCars(){
+    return this.dS.getData(this.getNumberOfFreeCarsUrl);
+  }
+  getNumberOfTakenCars(){
+    return this.dS.getData(this.getNumberOfTakenCarsUrl);
   }
 }

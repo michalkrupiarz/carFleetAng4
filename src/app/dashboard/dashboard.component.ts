@@ -9,6 +9,7 @@ import {Event} from '@angular/router';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import {Repair} from '../repair.model';
+import {LendServiceService} from '../lend/lend-service.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -21,13 +22,17 @@ export class DashboardComponent implements OnInit {
   private pendingRepairsNumber:number;
   private wholeCarsListLength:number;
   private pendingTiresNumber:number;
+  private freeCarsNumber:number;
+  private takenCarsNumber:number;
   constructor(private cS:CarService,
-  private rS:RepairService) { }
+  private rS:RepairService,
+  private lS:LendServiceService) { }
 
   ngOnInit() {
     this.getWholeCarsList();
     this.getPendingRepairsNumber();
-
+    this.getFreeCarsNumber();
+    this.getTakenCarsNumber();
   }
 
   getWholeCarsList(){
@@ -46,5 +51,15 @@ export class DashboardComponent implements OnInit {
         console.log('repairs ',repairs);
         this.pendingRepairsNumber = repairs.length;
       })
+  }
+  getFreeCarsNumber(){
+    this.lS.getNumberOfFreeCars().subscribe((s)=>{
+      this.freeCarsNumber = s;
+    });
+  }
+  getTakenCarsNumber(){
+    this.lS.getNumberOfTakenCars().subscribe((s)=>{
+      this.takenCarsNumber = s;
+    });
   }
 }

@@ -8,6 +8,7 @@ export class CheckoutService {
   constructor(private dS: DataService) { }
   private getAllCheckoutsUrl = 'getAllCheckouts';
   private postNewCheckoutUrl='addCheckout';
+  private checkoutsUpcomingIn = 'getCheckoutsUpcomingIn';
 
   getAllCheckouts(){
     return this.dS.getData(this.getAllCheckoutsUrl);
@@ -15,5 +16,8 @@ export class CheckoutService {
 
   potNewCheckout(body:any){
     return this.dS.postData(this.postNewCheckoutUrl,body);
+  }
+  getCheckoutsUpcomingIn(days:number){
+    return this.dS.getData(this.checkoutsUpcomingIn+'/'+days);
   }
 }

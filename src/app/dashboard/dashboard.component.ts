@@ -10,6 +10,7 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import {Repair} from '../repair.model';
 import {LendServiceService} from '../lend/lend-service.service';
+import {CheckoutService} from '../checkout/checkout.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -24,15 +25,19 @@ export class DashboardComponent implements OnInit {
   private pendingTiresNumber:number;
   private freeCarsNumber:number;
   private takenCarsNumber:number;
+  private checkoutsUpcomingIn:number;
+  private daysToUpcomingCheckouts = 30;
   constructor(private cS:CarService,
   private rS:RepairService,
-  private lS:LendServiceService) { }
+  private lS:LendServiceService,
+  private chS:CheckoutService) { }
 
   ngOnInit() {
     this.getWholeCarsList();
     this.getPendingRepairsNumber();
     this.getFreeCarsNumber();
     this.getTakenCarsNumber();
+    this.getCheckoutsUpcomingIn();
   }
 
   getWholeCarsList(){
@@ -60,6 +65,11 @@ export class DashboardComponent implements OnInit {
   getTakenCarsNumber(){
     this.lS.getNumberOfTakenCars().subscribe((s)=>{
       this.takenCarsNumber = s;
+    });
+  }
+  public getCheckoutsUpcomingIn(){
+    this.chS.getCheckoutsUpcomingIn(this.daysToUpcomingCheckouts).subscribe((s)=>{
+      this.checkoutsUpcomingIn = s.length;
     });
   }
 }

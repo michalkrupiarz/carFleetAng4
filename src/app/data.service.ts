@@ -17,4 +17,7 @@ export class DataService {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     return this.http.post(this.baseUrl+url,body,headers);
   }
+  getDataWithBody(url:string,body:string){
+    return this.http.get(this.baseUrl+url,body).map(r=>r.json());
+  }
 }

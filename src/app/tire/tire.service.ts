@@ -11,7 +11,8 @@ export class TireServiceService {
   constructor(private ds:DataService) {
    }
    private allTiresUrl = 'getAllTires';
-   private postNewTireUrl = 'addTires'
+   private postNewTireUrl = 'addTires';
+   private tiresToChangeInUrl = 'tiresToChangeIn';
 
   getAllTires(){
     console.log('weszlo do servicu')
@@ -19,5 +20,8 @@ export class TireServiceService {
   }
   postNewTires(body:any){
     return this.ds.postData(this.postNewTireUrl,body);
+  }
+  getAllTiresToChangeIn(days:number){
+    return this.ds.getData(this.tiresToChangeInUrl+'/'+days);
   }
 }

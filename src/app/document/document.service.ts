@@ -8,11 +8,16 @@ export class DocumentService {
 
   private allDocumentsUrl = 'getAllDocuments';
   private postNewDocumentUrl = 'addDocument';
+  private documentsToExpireInURL = 'documentsExpiratingIn';
 
   getAllDocuments(){
     return this.dS.getData(this.allDocumentsUrl);
   }
   postNewDocument(body:any){
       return this.dS.postData(this.postNewDocumentUrl,body);
+  }
+  getDocumentsExpirationgIn(days:number){
+    console.log('from console',days)
+    return this.dS.getData(this.documentsToExpireInURL+'/'+days);
   }
 }

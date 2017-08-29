@@ -11,6 +11,9 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import {Repair} from '../repair.model';
 import {LendServiceService} from '../lend/lend-service.service';
 import {CheckoutService} from '../checkout/checkout.service';
+import {InsuranceService} from '../insurance/insurance.service';
+import {TireServiceService} from '../tire/tire.service';
+import {DocumentService} from '../document/document.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -26,11 +29,20 @@ export class DashboardComponent implements OnInit {
   private freeCarsNumber:number;
   private takenCarsNumber:number;
   private checkoutsUpcomingIn:number;
+  private insurancesEndingIn:number;
+  private tiresToChangeIn:number;
+  private documentsExpirating:number;
   private daysToUpcomingCheckouts = 30;
+  private daysInsurancesEndingIn = 30;
+  private daysTireToChange = 30;
+  private daysDocumentsExpiratingIn = 30;
   constructor(private cS:CarService,
   private rS:RepairService,
   private lS:LendServiceService,
-  private chS:CheckoutService) { }
+  private chS:CheckoutService,
+  private iS:InsuranceService,
+  private tSS:TireServiceService,
+  private dS:DocumentService) { }
 
   ngOnInit() {
     this.getWholeCarsList();
@@ -38,8 +50,23 @@ export class DashboardComponent implements OnInit {
     this.getFreeCarsNumber();
     this.getTakenCarsNumber();
     this.getCheckoutsUpcomingIn();
+    this.getInsurancesEndingIn();
+    this.getTiresToChangeIn();
+    this.getDocumentsExpiratingIn();
   }
 
+  getTiresToChangeIn(){
+    this.tSS.getAllTiresToChangeIn(this.daysTireToChange).subscribe((s)=>{
+      this.tiresToChangeIn = s.length;
+    })
+  }
+
+  getDocumentsExpiratingIn(){
+    this.dS.getDocumentsExpirationgIn(this.daysDocumentsExpiratingIn).subscribe((s)=>{
+      console.log('documents', s);
+      this.documentsExpirating = s.length;
+    })
+  }
   getWholeCarsList(){
     this.cS.getAllCars()
       .subscribe((source)=>{
@@ -71,5 +98,10 @@ export class DashboardComponent implements OnInit {
     this.chS.getCheckoutsUpcomingIn(this.daysToUpcomingCheckouts).subscribe((s)=>{
       this.checkoutsUpcomingIn = s.length;
     });
+  }
+  public getInsurancesEndingIn(){
+    this.iS.getInsurancesEndingInDays(this.daysInsurancesEndingIn).subscribe((s)=>{
+      this.insurancesEndingIn = s.length;
+    })
   }
 }

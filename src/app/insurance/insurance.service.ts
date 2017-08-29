@@ -8,6 +8,7 @@ export class InsuranceService {
 
   private allInsurancesUrl = 'getAllInsurances';
   private addInsuranceUrl = 'addInsurance';
+  private insurancesEndingInUrl = 'insurancesEndingIn';
 
   getAllInsurances(){
     return this.dS.getData(this.allInsurancesUrl);
@@ -15,6 +16,8 @@ export class InsuranceService {
   postNewInsurance(body:any){
     return this.dS.postData(this.addInsuranceUrl,body);
   }
-
+  getInsurancesEndingInDays(days:number){
+    return this.dS.getData(this.insurancesEndingInUrl+'/'+days);
+  }
 
 }

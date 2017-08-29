@@ -25,18 +25,18 @@
     </tab>
     <tab>
       <template tabHeading>Insurances, pending:
-         <span class="label label-primary">number</span>
+         <span class="label label-primary">{{insurancesEndingIn}}</span>
        </template>
       <app-insurances-list></app-insurances-list>
     </tab>
     <tab>
       <template tabHeading>Tires, pending:
-         <span class="label label-primary">{{pendingTiresNumber}}</span></template>
+         <span class="label label-primary">{{tiresToChangeIn}}</span></template>
       <app-tire-list></app-tire-list>
     </tab>
     <tab>
       <template tabHeading>Documents, pending:
-         <span class="label label-primary">number</span>
+         <span class="label label-primary">{{documentsExpirating}}</span>
        </template>
        <app-document-list></app-document-list>
     </tab>

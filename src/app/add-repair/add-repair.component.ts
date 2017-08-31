@@ -9,6 +9,7 @@ import { DatepickerModule } from 'ngx-bootstrap';
   import {RepairService} from '../repair/repair.service';
   import {StatusService} from '../usableServices/status.service';
   import {Status} from '../status.model';
+  import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-add-repair',
@@ -29,7 +30,8 @@ export class AddRepairComponent implements OnInit {
   constructor(private modalService: BsModalService,
     private cS:CarService,
     private rS:RepairService,
-    private sS:StatusService) { }
+    private sS:StatusService,
+    private router:Router) { }
 
   ngOnInit() {
     this.getAllCars();
@@ -64,9 +66,8 @@ export class AddRepairComponent implements OnInit {
   }
   public addRepair(car:Car, dStart:Date, dEnd:Date, cost:number,st:Status){
     const body = {car:car,dateStart:dStart,dateEnd:dEnd,cost:cost,status:st};
-    console.log(body);
     this.rS.postNewRepair(body).subscribe((s)=>{
-      console.log (s);
+      if (s.status === 200) this.router.navigate(['/start']);
     });
   }
   public getAllCars(){

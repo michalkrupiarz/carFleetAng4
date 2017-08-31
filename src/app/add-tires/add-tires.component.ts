@@ -9,6 +9,7 @@ import { DatepickerModule } from 'ngx-bootstrap';
   import {TireServiceService} from '../tire/tire.service';
   import {StatusService} from '../usableServices/status.service';
   import {Status} from '../status.model';
+  import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-add-tires',
@@ -20,7 +21,8 @@ export class AddTiresComponent implements OnInit {
   constructor(private cS:CarService,
   private tS: TireServiceService,
   private sS: StatusService,
-  private modalService: BsModalService) { }
+  private modalService: BsModalService,
+  private router:Router) { }
 
   private cars:Car[];
   private statuses: Status[];
@@ -60,8 +62,7 @@ export class AddTiresComponent implements OnInit {
  public addTires(car:Car,changeDate:Date,type:string,status:Status){
    const body = {type:type,changeDate:changeDate,car:car,status:status};
    this.tS.postNewTires(body).subscribe((s)=>{
-     this.report = s;
-     console.log(this.report);
+     if (s.status === 200) this.router.navigate(['/start']);
    })
  }
 }

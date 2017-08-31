@@ -9,6 +9,7 @@ import { DatepickerModule } from 'ngx-bootstrap';
   import {CheckoutService} from '../checkout/checkout.service';
   import {StatusService} from '../usableServices/status.service';
   import {Status} from '../status.model';
+  import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-add-checkout',
@@ -30,7 +31,8 @@ export class AddCheckoutComponent implements OnInit {
   constructor(private cS:CarService,
               private sS:StatusService,
               private checkS:CheckoutService,
-              private modalService: BsModalService) { }
+              private modalService: BsModalService,
+              private router:Router) { }
 
   ngOnInit() {
     this.getAllCars();
@@ -68,10 +70,8 @@ export class AddCheckoutComponent implements OnInit {
  }
  public addCheckout(car:Car, dateFrom:Date, dateTo:Date, note:string,st:Status,cost:number){
    const body = {car:car,dateFrom:dateFrom,dateTo:dateTo,note:note,status:st,cost:cost};
-   console.log(body);
     this.checkS.potNewCheckout(body).subscribe((s)=>{
-      console.log('s from checkouts',s);
+      if (s.status === 200) this.router.navigate(['/start']);
     });
-   console.log("report from adding chekc",this.report);
  }
 }

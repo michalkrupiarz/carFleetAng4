@@ -9,6 +9,7 @@ import { DatepickerModule } from 'ngx-bootstrap';
   import {LendServiceService} from '../lend/lend-service.service';
   import {StatusService} from '../usableServices/status.service';
   import {Status} from '../status.model';
+  import {Router} from '@angular/Router';
 
 @Component({
   selector: 'app-add-lends',
@@ -31,7 +32,8 @@ export class AddLendsComponent implements OnInit {
   constructor(private modalService: BsModalService,
     private cS:CarService,
     private lS:LendServiceService,
-    private sS:StatusService) { }
+    private sS:StatusService,
+    private router:Router) { }
 
   ngOnInit() {
     this.getAllCars();
@@ -66,9 +68,9 @@ export class AddLendsComponent implements OnInit {
 
  public addLend(car:Car, dStart:Date, dEnd:Date, person:string,st:Status){
    const body = {car:car,lendStart:dStart,lendEnd:dEnd,person:person,status:st};
-   console.log(body);
+
    this.lS.postNewLend(body).subscribe((s)=>{
-     console.log(s);
+     if (s.status === 200) this.router.navigate(['/start']);
    });
  }
  public getAllCars(){

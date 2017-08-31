@@ -9,6 +9,7 @@ import { DatepickerModule } from 'ngx-bootstrap';
   import {DocumentService} from '../document/document.service';
   import {StatusService} from '../usableServices/status.service';
   import {Status} from '../status.model';
+  import {Router} from '@angular/Router';
 
 @Component({
   selector: 'app-add-document',
@@ -20,7 +21,8 @@ export class AddDocumentComponent implements OnInit {
   constructor(private cS: CarService,
     private dS: DocumentService,
     private sS: StatusService,
-    private modalService:BsModalService) {  }
+    private modalService:BsModalService,
+    private router:Router) {  }
 
     private cars:Car[];
     private statuses:Status[];
@@ -57,9 +59,8 @@ export class AddDocumentComponent implements OnInit {
 
   public addDocument(car:Car,eDate:Date,st:Status,type:string){
     const body = {car:car,expirationDate:eDate,status:st,type:type}
-    console.log(body);
     this.dS.postNewDocument(body).subscribe((s)=>{
-      console.log('i wonder what it is ', s);
+      if (s.status === 200) this.router.navigate(['/start']);
     })
   }
 

@@ -9,6 +9,7 @@ import { DatepickerModule } from 'ngx-bootstrap';
   import {InsuranceService} from '../insurance/insurance.service';
   import {StatusService} from '../usableServices/status.service';
   import {Status} from '../status.model';
+  import {Router} from '@angular/router';
 
 
 @Component({
@@ -31,7 +32,8 @@ export class AddInsuranceComponent implements OnInit {
   constructor(private cS:CarService,
               private sS:StatusService,
               private iS:InsuranceService,
-              private modalService:BsModalService) { }
+              private modalService:BsModalService,
+              private router:Router) { }
 
   ngOnInit() {
     this.getAllCars();
@@ -73,9 +75,8 @@ export class AddInsuranceComponent implements OnInit {
   }
  public addInsurance(car:Car,start:Date,end:Date,pay:Date,st:Status,cost:number,company:string,note:string){
    const body = {car:car,dateStart:start,dateEnd:end,note:note,cost:cost,insCompany:company,payDate:pay,status:st}
-   console.log(body);
    this.iS.postNewInsurance(body).subscribe((s)=>{
-     console.log('i wonder what it is ', s);
+     if (s.status === 200) this.router.navigate(['/start']);
    })
  }
 

@@ -9,7 +9,7 @@ import { DatepickerModule } from 'ngx-bootstrap';
   import {LendServiceService} from '../lend/lend-service.service';
   import {StatusService} from '../usableServices/status.service';
   import {Status} from '../status.model';
-  import {Router} from '@angular/Router';
+  import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-add-lends',

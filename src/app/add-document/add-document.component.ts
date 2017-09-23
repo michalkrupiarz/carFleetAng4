@@ -9,7 +9,7 @@ import { DatepickerModule } from 'ngx-bootstrap';
   import {DocumentService} from '../document/document.service';
   import {StatusService} from '../usableServices/status.service';
   import {Status} from '../status.model';
-  import {Router} from '@angular/Router';
+  import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-add-document',
